@@ -73,7 +73,7 @@
       <DependentUpon>Garage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Resource Include="Shared\Styles\DataGridRowStyle.xaml">
+    <Resource Include="Shared\Styles\DataGridStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>

@@ -29,7 +29,9 @@
                       RowStyle="{DynamicResource DataGridRowStyle}" 
                       CellStyle="{DynamicResource DataGridCellStyle}"
                       AlternationCount="2"
-                      SelectionUnit="FullRow">
+                      SelectionUnit="FullRow"
+                      SelectionMode="Single"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Marque" Binding="{Binding Brand}" />
