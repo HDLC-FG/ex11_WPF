@@ -1,0 +1,14 @@
+.vs/
+.git/
+
+bin/
+obj/
+
+API/bin/
+API/obj/
+
+ApplicationCore/bin/
+ApplicationCore/obj/
+
+Infrastructure/bin/
+Infrastructure/obj/
