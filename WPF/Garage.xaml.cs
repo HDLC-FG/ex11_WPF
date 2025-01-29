@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using ApplicationCore.Services;
+using Infrastructure;
+using Infrastructure.Repositories;
 using WPF.ViewModels;
 
 namespace WPF
@@ -12,16 +15,12 @@ namespace WPF
     {
         public MainWindow()
         {
-            var viewModel = new GarageViewModel();
+            var viewModel = new GarageViewModel(new VehicleService(new VehicleRepository(new ApplicationDbContext())));
             DataContext = viewModel;
 
             InitializeComponent();
 
             VehicleList.SelectedItem = viewModel.Vehicles.FirstOrDefault();
-            //var service = new VehicleService(new VehicleRepository(new Infrastructure.ApplicationDbContext()));
-
-            //var vehicleList = Task.Run(() => service.GetAll()).Result;
-            //var vehicleObservable = new ObservableCollection<Vehicle>(vehicleList);
         }
 
         private void AddVehicle_Click(object sender, RoutedEventArgs e)
@@ -32,11 +31,6 @@ namespace WPF
         private void AddOption_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("AddOption_Click");
-        }
-
-        private void Apply_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Apply_Click");
         }
     }
 }

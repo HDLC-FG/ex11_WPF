@@ -1,20 +1,33 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WPF.MVVM
+namespace WPF.Events
 {
     public class Command : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        private Action<object> execute;
+        private Func<object, bool> canExecute;
 
-        public bool CanExecute(object parameter)
+        public Command(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            throw new NotImplementedException();
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            execute(parameter);
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return canExecute == null || canExecute(parameter);
         }
     }
 }

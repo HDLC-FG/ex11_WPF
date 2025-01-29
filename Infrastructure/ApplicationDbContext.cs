@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Data.Entity;
 using ApplicationCore.Models;
 
@@ -11,7 +10,7 @@ namespace Infrastructure
         public DbSet<Engine> Engines { get; set; }
         public DbSet<Option> Options { get; set; }
 
-        public ApplicationDbContext()
+        public ApplicationDbContext() : base("Garage")
         {
         }
 
@@ -22,21 +21,16 @@ namespace Infrastructure
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Vehicle>()
+                .HasKey(v => v.Id)
+                .Property(v => v.Id)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<Vehicle>()
                 .HasRequired(v => v.Engine);
 
             modelBuilder.Entity<Vehicle>()
                 .HasMany(v => v.Options)
                 .WithMany();
-
-            //modelBuilder.Entity<Vehicle>()
-            //    .HasMany(v => v.Options)
-            //    .WithMany(o => o.Vehicles);
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    var conn = ConfigurationManager.ConnectionStrings["GarageConnection"].ConnectionString;
-        //    optionsBuilder.UseSqlServer(conn);
-        //}
     }
 }

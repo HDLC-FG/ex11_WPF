@@ -8,5 +8,6 @@ namespace ApplicationCore.Interfaces.Repositories
     {
         Task<IList<Vehicle>> GetAll();
         Task Add(Vehicle vehicle);
+        Task Update(Vehicle vehicle);
     }
 }

@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202501231134138_InitialCreate.cs" />
-    <Compile Include="Migrations\202501231134138_InitialCreate.Designer.cs">
-      <DependentUpon>202501231134138_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202501291352546_InitialCreate.cs" />
+    <Compile Include="Migrations\202501291352546_InitialCreate.Designer.cs">
+      <DependentUpon>202501291352546_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,7 +63,9 @@
     <Compile Include="Repositories\VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -73,8 +75,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202501231134138_InitialCreate.resx">
-      <DependentUpon>202501231134138_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202501291352546_InitialCreate.resx">
+      <DependentUpon>202501291352546_InitialCreate.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

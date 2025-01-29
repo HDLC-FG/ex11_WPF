@@ -20,6 +20,11 @@ namespace ApplicationCore.Services
             return await vehicleRepository.GetAll();
         }
 
+        public async Task Update(Vehicle vehicle)
+        {
+            await vehicleRepository.Update(vehicle);
+        }
+
         public async Task Add(Vehicle vehicle)
         {
             await vehicleRepository.Add(vehicle);

@@ -64,7 +64,7 @@
                                   IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Nom :" Width="*" Binding="{Binding Name}" />
-                                <DataGridTextColumn Header="Prix :" Width="*" Binding="{Binding Price}" />
+                                <DataGridTextColumn Header="Prix :" Width="*" Binding="{Binding Price, StringFormat=C}" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="{Binding SelectedVehicle.TotalPrice, StringFormat='Total des prix : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
@@ -78,7 +78,7 @@
                                 Background="{StaticResource IsSelectedColorBrush}" 
                                 BorderThickness="2"
                                 BorderBrush="{StaticResource PrimaryColorBrush}" 
-                                Click="Apply_Click" />
+                                Command="{Binding UpdateVehicleCommand}" />
                     </StackPanel>
                 </Grid>
             </Expander>

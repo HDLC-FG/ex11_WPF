@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using ApplicationCore.Interfaces.Repositories;
 using ApplicationCore.Models;
-using System.Data.Entity;
 
 namespace Infrastructure.Repositories
 {
@@ -18,6 +18,12 @@ namespace Infrastructure.Repositories
         public async Task<IList<Vehicle>> GetAll()
         {
             return await dbContext.Vehicles.Include(v => v.Engine).ToListAsync();
+        }
+
+        public async Task Update(Vehicle vehicle)
+        {
+            dbContext.Entry(vehicle).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task Add(Vehicle vehicle)
