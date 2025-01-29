@@ -1,4 +1,4 @@
-﻿namespace WPF.MVVM.Models
+﻿namespace ApplicationCore.Models
 {
     public class Option
     {

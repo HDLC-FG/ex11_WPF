@@ -6,9 +6,9 @@ namespace WPF.Shared.UserControls
     /// <summary>
     /// Logique d'interaction pour RoundButton.xaml
     /// </summary>
-    public partial class RoundButton : UserControl
+    public partial class AddRoundButton : UserControl
     {
-        public RoundButton()
+        public AddRoundButton()
         {
             InitializeComponent();
         }

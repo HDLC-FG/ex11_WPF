@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Data;
-using ApplicationCore.Models;
+using static ApplicationCore.Enums;
 
 namespace WPF.Converters
 {
-    public class ListToStringConverter : IValueConverter
+    public class EnumToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IList<Option> options && options.Any())
+            if (value is TypeEngine typeEngine)
             {
-                return string.Join(" ; ", options.Select(option => option.ToString()));
+                return typeEngine.ToString();
             }
 
-            return "No options";
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

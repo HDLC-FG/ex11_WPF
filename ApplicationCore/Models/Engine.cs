@@ -1,6 +1,6 @@
-﻿using static WPF.MVVM.Enums;
+﻿using static ApplicationCore.Enums;
 
-namespace WPF.MVVM.Models
+namespace ApplicationCore.Models
 {
     public class Engine
     {

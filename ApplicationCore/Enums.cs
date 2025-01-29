@@ -1,4 +1,4 @@
-﻿namespace WPF.MVVM
+﻿namespace ApplicationCore
 {
     public class Enums
     {

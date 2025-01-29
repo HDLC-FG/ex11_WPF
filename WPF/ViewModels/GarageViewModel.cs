@@ -1,22 +1,26 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
 using System.Collections.Generic;
-using WPF.MVVM.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
+using ApplicationCore;
+using ApplicationCore.Models;
+using static ApplicationCore.Enums;
 
-namespace WPF.MVVM.ViewModels
+namespace WPF.ViewModels
 {
-    public class VehicleList
+    internal class GarageViewModel : NotifyPropertyChanged
     {
-        public ObservableCollection<Vehicle> Vehicles { get; set; }
+        private Vehicle selectedVehicle;
 
-        public VehicleList()
+        public GarageViewModel()
         {
             Vehicles = new ObservableCollection<Vehicle>
             {
                 new Vehicle
-                { 
-                    Id = 1, 
-                    Name = "Car 1", 
-                    Brand = "Brand A", 
+                {
+                    Id = 1,
+                    Name = "Car 1",
+                    Brand = "Brand A",
                     Price = 20000,
                     Engine = new Engine
                     {
@@ -32,14 +36,26 @@ namespace WPF.MVVM.ViewModels
                             Id = 1,
                             Name = "Option 1",
                             Price = 1000
+                        },
+                        new Option
+                        {
+                            Id = 2,
+                            Name = "Option 2",
+                            Price = 1200
+                        },
+                        new Option
+                        {
+                            Id = 3,
+                            Name = "Option 3",
+                            Price = 800
                         }
                     }
                 },
-                new Vehicle 
-                { 
-                    Id = 2, 
-                    Name = "Car 2", 
-                    Brand = "Brand B", 
+                new Vehicle
+                {
+                    Id = 2,
+                    Name = "Car 2",
+                    Brand = "Brand B",
                     Price = 25000,
                     Engine = new Engine
                     {
@@ -58,11 +74,11 @@ namespace WPF.MVVM.ViewModels
                         }
                     }
                 },
-                new Vehicle 
-                { 
-                    Id = 3, 
-                    Name = "Car 3", 
-                    Brand = "Brand C", 
+                new Vehicle
+                {
+                    Id = 3,
+                    Name = "Car 3",
+                    Brand = "Brand C",
                     Price = 30000,
                     Engine = new Engine
                     {
@@ -82,6 +98,19 @@ namespace WPF.MVVM.ViewModels
                     }
                 }
             };
+            EngineTypes = Enum.GetValues(typeof(TypeEngine)).Cast<TypeEngine>().ToList();
         }
+
+        public ObservableCollection<Vehicle> Vehicles { get; set; }
+        public Vehicle SelectedVehicle
+        {
+            get { return selectedVehicle; }
+            set
+            {
+                selectedVehicle = value;
+                OnPropertyChanged();
+            }
+        }
+        public List<TypeEngine> EngineTypes { get; set; }
     }
 }

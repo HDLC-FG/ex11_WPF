@@ -1,22 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:colors="clr-namespace:WPF">
+
+    <Style x:Key="DataGridRowHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
     <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=AlternationIndex}" Value="1">
-                <Setter Property="Background" Value="Black"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}" />
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Blue"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="{StaticResource OnMouseOverColorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="Yellow"/>
-                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Background" Value="{StaticResource IsSelectedColorBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

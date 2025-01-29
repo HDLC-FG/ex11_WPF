@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
-using WPF.MVVM.Models;
+using WPF.ViewModels;
 
 namespace WPF
 {
@@ -13,45 +12,31 @@ namespace WPF
     {
         public MainWindow()
         {
+            var viewModel = new GarageViewModel();
+            DataContext = viewModel;
+
             InitializeComponent();
 
-            VehicleList.DataContext = new ObservableCollection<Vehicle>
-            {
-                new Vehicle
-                {
-                    Id = 1,
-                    Name = "208",
-                    Brand = "Peugeot",
-                    Engine = new Engine
-                    {
-                        Id = 1,
-                        Horsepower = 100,
-                        Price = 8000,
-                        Type = MVVM.Enums.TypeEngine.Diesel
-                    },
-                    Options = new List<Option>
-                    {
-                        new Option
-                        {
-                            Id = 1,
-                            Name = "Radar de recul",
-                            Price = 1000
-                        },
-                        new Option
-                        {
-                            Id = 2,
-                            Name = "Boite automatique",
-                            Price = 4000
-                        }
-                    },
-                    Price = 12000
-                }
-            };
+            VehicleList.SelectedItem = viewModel.Vehicles.FirstOrDefault();
+            //var service = new VehicleService(new VehicleRepository(new Infrastructure.ApplicationDbContext()));
+
+            //var vehicleList = Task.Run(() => service.GetAll()).Result;
+            //var vehicleObservable = new ObservableCollection<Vehicle>(vehicleList);
         }
 
         private void AddVehicle_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("AddVehicle_Click");
+        }
+
+        private void AddOption_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("AddOption_Click");
+        }
+
+        private void Apply_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Apply_Click");
         }
     }
 }
