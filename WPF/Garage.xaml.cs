@@ -22,15 +22,5 @@ namespace WPF
 
             VehicleList.SelectedItem = viewModel.Vehicles.FirstOrDefault();
         }
-
-        private void AddVehicle_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("AddVehicle_Click");
-        }
-
-        private void AddOption_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("AddOption_Click");
-        }
     }
 }

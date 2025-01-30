@@ -24,7 +24,7 @@ namespace InfrastructureTest.Repositories
                         {
                             Horsepower = 100,
                             Price = 8000,
-                            Type = Enums.TypeEngine.Petrol
+                            Type = Enums.EngineType.Petrol
                         },
                         Options = new List<Option>
                         {
@@ -53,7 +53,7 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, engineAdded.Id);
                     Assert.AreEqual(100, engineAdded.Horsepower);
                     Assert.AreEqual(8000, engineAdded.Price);
-                    Assert.AreEqual(Enums.TypeEngine.Petrol, engineAdded.Type);
+                    Assert.AreEqual(Enums.EngineType.Petrol, engineAdded.Type);
                     Assert.IsNotNull(vehicleAdded.Options);
                     var optionAdded = vehicleAdded.Options[0];
                     Assert.IsNotNull(optionAdded);

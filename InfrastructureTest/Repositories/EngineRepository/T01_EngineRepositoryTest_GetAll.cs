@@ -37,13 +37,13 @@ namespace InfrastructureTest.Repositories
                     {
                         Horsepower = 100,
                         Price = 8000,
-                        Type = Enums.TypeEngine.Petrol
+                        Type = Enums.EngineType.Petrol
                     });
                     dbContext.Engines.Add(new Engine
                     {
                         Horsepower = 110,
                         Price = 9000,
-                        Type = Enums.TypeEngine.Diesel
+                        Type = Enums.EngineType.Diesel
                     });
                     dbContext.SaveChanges();
                     var repository = new EngineRepository(dbContext);
@@ -56,14 +56,14 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, engine1.Id);
                     Assert.AreEqual(100, engine1.Horsepower);
                     Assert.AreEqual(8000, engine1.Price);
-                    Assert.AreEqual(Enums.TypeEngine.Petrol, engine1.Type);
+                    Assert.AreEqual(Enums.EngineType.Petrol, engine1.Type);
 
                     var engine2 = result[1];
                     Assert.IsNotNull(engine2);
                     Assert.AreEqual(2, engine2.Id);
                     Assert.AreEqual(110, engine2.Horsepower);
                     Assert.AreEqual(9000, engine2.Price);
-                    Assert.AreEqual(Enums.TypeEngine.Diesel, engine2.Type);
+                    Assert.AreEqual(Enums.EngineType.Diesel, engine2.Type);
                 }
             }
         }

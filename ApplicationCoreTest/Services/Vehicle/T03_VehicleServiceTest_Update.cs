@@ -20,7 +20,7 @@ namespace ApplicationCoreTest.Services
                 {
                     Horsepower = 100,
                     Price = 8000,
-                    Type = Enums.TypeEngine.Petrol
+                    Type = Enums.EngineType.Petrol
                 },
                 Options = new List<Option>
                 {

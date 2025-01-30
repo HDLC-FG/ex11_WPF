@@ -2,7 +2,7 @@
 {
     public class Enums
     {
-        public enum TypeEngine
+        public enum EngineType
         {
             Petrol,
             Diesel,

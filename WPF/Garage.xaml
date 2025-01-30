@@ -5,87 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
         xmlns:userControls="clr-namespace:WPF.Shared.UserControls"
-        xmlns:converters="clr-namespace:WPF.Converters"
-        xmlns:enums="clr-namespace:ApplicationCore;assembly=ApplicationCore"
+        xmlns:converters="clr-namespace:WPF.Converters" 
+        xmlns:viewmodels="clr-namespace:WPF.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:GarageViewModel}"
         mc:Ignorable="d"
         Language="fr-FR"
         Title="Garage"  Width="800" Height="450" MinWidth="500" MinHeight="300">
 
     <Window.Resources>
         <converters:ListToStringConverter x:Key="ListToStringConverter"/>
-        <converters:EnumToStringConverter x:Key="EnumToStringConverter"/>
-        <enums:Enums x:Key="enums" />
     </Window.Resources>
 
     <Grid>
         <DockPanel>
             <Expander DockPanel.Dock="Right" Background="Gray" ExpandDirection="Right" IsExpanded="True">
-                <Grid Width="180">
-                    <StackPanel Orientation="Vertical" Margin="5, 0, 15, 0">
-                        <Label Content="Informations du véhicule :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-                        <Label Content="{Binding SelectedVehicle.Name}" ContentStringFormat="Modèle : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                        <Label Content="{Binding SelectedVehicle.Brand}" ContentStringFormat="Marque : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                        <Label Content="{Binding SelectedVehicle.Price}" ContentStringFormat="Prix du véhicule : {0:C}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                        <Label Content="Informations du moteur :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-                        <DataGrid ItemsSource="{Binding EngineTypes}"
-                                  SelectedItem="{Binding SelectedVehicle.Engine.Type, Mode=TwoWay}"
-                                  AutoGenerateColumns="False"
-                                  CellStyle="{DynamicResource DataGridCellStyle}"
-                                  ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
-                                  HorizontalAlignment="Stretch"
-                                  HeadersVisibility="Column"
-                                  SelectionMode="Single"
-                                  IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Type du moteur :" Width="*" Binding="{Binding}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Cynlindrée du moteur : " Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                            <TextBox TextWrapping="NoWrap" Text="{Binding SelectedVehicle.Engine.Horsepower}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
-                            <Label Content=" chevaux" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Prix du moteur : " Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                            <TextBox TextWrapping="NoWrap" Text="{Binding SelectedVehicle.Engine.Price}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Liste des options : " Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-                            <userControls:AddRoundButton x:Name="AddOption" Click="AddOption_Click" />
-                        </StackPanel>
-                        <DataGrid ItemsSource="{Binding SelectedVehicle.Options}"
-                                  MaxHeight="100"      
-                                  AutoGenerateColumns="False"
-                                  CellStyle="{DynamicResource DataGridCellStyle}"
-                                  ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
-                                  HorizontalAlignment="Stretch"
-                                  HeadersVisibility="Column"
-                                  SelectionMode="Single"
-                                  IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom :" Width="*" Binding="{Binding Name}" />
-                                <DataGridTextColumn Header="Prix :" Width="*" Binding="{Binding Price, StringFormat=C}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <TextBlock Text="{Binding SelectedVehicle.TotalPrice, StringFormat='Total des prix : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
-                        <Button x:Name="Apply"
-                                Content="Appliquer" 
-                                Width="auto"
-                                Margin="10"
-                                Padding="8, 3, 8, 3"
-                                HorizontalAlignment="Center"
-                                FontWeight="Bold" 
-                                Background="{StaticResource IsSelectedColorBrush}" 
-                                BorderThickness="2"
-                                BorderBrush="{StaticResource PrimaryColorBrush}" 
-                                Command="{Binding UpdateVehicleCommand}" />
-                    </StackPanel>
-                </Grid>
+                <userControls:AddOrUpdateVehicle 
+                    EngineTypes="{Binding EngineTypes}"
+                    DataContextVehicle="{Binding SelectedVehicle}" 
+                    ApplyCommand="{Binding UpdateVehicleCommand}" />
             </Expander>
             
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                 <Label Content="Liste des véhicules :" FontWeight="Bold" />
-                <userControls:AddRoundButton x:Name="AddVehicle" Click="AddVehicle_Click" />
+                <userControls:AddRoundButton x:Name="AddVehicle" />
             </StackPanel>
             <DataGrid Name="VehicleList"
                       ItemsSource="{Binding Vehicles}"

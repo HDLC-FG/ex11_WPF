@@ -9,7 +9,7 @@ namespace WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is TypeEngine typeEngine)
+            if (value is EngineType typeEngine)
             {
                 return typeEngine.ToString();
             }

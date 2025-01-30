@@ -5,7 +5,7 @@ namespace ApplicationCore.Models
     public class Engine
     {
         public int Id { get; set; }
-        public TypeEngine Type { get; set; }
+        public EngineType Type { get; set; }
         public int Horsepower { get; set; }
         public int Price { get; set; }
 
