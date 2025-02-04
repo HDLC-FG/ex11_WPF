@@ -29,19 +29,6 @@ namespace WPF.Shared.UserControls
             set { SetValue(DataContextVehicleProperty, value); }
         }
 
-        //public static readonly DependencyProperty MyColorContextProperty =
-        //    DependencyProperty.Register(
-        //        "MyColor",
-        //        typeof(Brush),
-        //        typeof(AddOrUpdateVehicle),
-        //        new PropertyMetadata(Brushes.Blue));
-
-        //public Brush MyColor
-        //{
-        //    get { return (Brush)GetValue(MyColorContextProperty); }
-        //    set { SetValue(MyColorContextProperty, value); }
-        //}
-
         public static readonly DependencyProperty EngineTypesContextProperty =
             DependencyProperty.Register(
                 "EngineTypes",
@@ -66,6 +53,19 @@ namespace WPF.Shared.UserControls
         {
             get { return (ICommand)GetValue(ApplyCommandProperty); }
             set { SetValue(ApplyCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty OptionsCommandProperty =
+            DependencyProperty.Register(
+                "OptionsCommand",
+                typeof(ICommand),
+                typeof(AddOrUpdateVehicle),
+                new PropertyMetadata(null));
+
+        public ICommand OptionsCommand
+        {
+            get { return (ICommand)GetValue(OptionsCommandProperty); }
+            set { SetValue(OptionsCommandProperty, value); }
         }
 
         public AddOrUpdateVehicle()

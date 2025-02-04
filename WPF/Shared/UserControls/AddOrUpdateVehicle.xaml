@@ -37,17 +37,18 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Liste des options : " Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-                <local:AddRoundButton x:Name="AddOption" />
+                <local:AddRoundButton x:Name="AddOption"
+                                      OptionsCommand="{Binding OptionsCommand, RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}"/>
             </StackPanel>
             <DataGrid ItemsSource="{Binding Options}"
-                  MaxHeight="100"      
-                  AutoGenerateColumns="False"
-                  CellStyle="{DynamicResource DataGridCellStyle}"
-                  ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
-                  HorizontalAlignment="Stretch"
-                  HeadersVisibility="Column"
-                  SelectionMode="Single"
-                  IsReadOnly="True">
+                      MaxHeight="100"      
+                      AutoGenerateColumns="False"
+                      CellStyle="{DynamicResource DataGridCellStyle}"
+                      ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
+                      HorizontalAlignment="Stretch"
+                      HeadersVisibility="Column"
+                      SelectionMode="Single"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom :" Width="*" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Prix :" Width="*" Binding="{Binding Price, StringFormat=C}" />
