@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:WPF.Shared.UserControls"
              mc:Ignorable="d">
     <Grid>
-        <Button Width="20" Height="20" Background="Transparent" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Width="20" Height="20" Background="Transparent" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Cursor="Hand"
+                Command="{Binding OptionsCommand, RelativeSource={RelativeSource AncestorType=local:AddRoundButton}}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
