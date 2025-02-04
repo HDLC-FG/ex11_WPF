@@ -5,9 +5,13 @@
     <Color x:Key="SecondaryColor">White</Color>
     <Color x:Key="OnMouseOverColor">Blue</Color>
     <Color x:Key="IsSelectedColor">Yellow</Color>
+    <Color x:Key="SuccessColor">LawnGreen</Color>
+    <Color x:Key="DangerColor">red</Color>
     
     <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
     <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource SecondaryColor}" />
     <SolidColorBrush x:Key="OnMouseOverColorBrush" Color="{StaticResource OnMouseOverColor}" />
     <SolidColorBrush x:Key="IsSelectedColorBrush" Color="{StaticResource IsSelectedColor}" />
+    <SolidColorBrush x:Key="SuccessColorBrush" Color="{StaticResource SuccessColor}" />
+    <SolidColorBrush x:Key="DangerColorBrush" Color="{StaticResource DangerColor}" />
 </ResourceDictionary>

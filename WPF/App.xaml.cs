@@ -5,10 +5,12 @@ using System.Globalization;
 using System.Windows;
 using ApplicationCore.Interfaces.Repositories;
 using ApplicationCore.Interfaces.Services;
+using ApplicationCore.Interfaces.ViewModels;
 using ApplicationCore.Services;
 using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using WPF.ViewModels;
 
 namespace WPF
 {
@@ -28,18 +30,24 @@ namespace WPF
 
             var serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddScoped<ApplicationDbContext>((provider) =>
+            serviceCollection.AddSingleton<ApplicationDbContext>((provider) =>
             {
                 var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GarageConnection"].ConnectionString);
                 connection.Open();
                 return new ApplicationDbContext(connection, connectionDisposeWithContext: true);
             });
+
+            serviceCollection.AddSingleton<GarageWindow>();
+            serviceCollection.AddSingleton<IGarageViewModel, GarageViewModel>();
             serviceCollection.AddScoped<IVehicleService, VehicleService>();
+            serviceCollection.AddScoped<IOptionService, OptionService>();
             serviceCollection.AddScoped<IVehicleRepository, VehicleRepository>();
+            serviceCollection.AddScoped<IOptionRepository, OptionRepository>();
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
-            base.OnStartup(e);
+            var garageWindow = ServiceProvider.GetRequiredService<GarageWindow>();
+            garageWindow.Show();
         }
     }
 }
