@@ -7,5 +7,6 @@ namespace ApplicationCore.Interfaces.Services
     public interface IOptionService
     {
         Task<IList<Option>> GetAll();
+        Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable);
     }
 }

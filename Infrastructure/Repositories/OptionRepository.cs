@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using ApplicationCore.Models;
-using System.Data.Entity;
 
 namespace Infrastructure.Repositories
 {
@@ -17,6 +18,12 @@ namespace Infrastructure.Repositories
         public async Task<IList<Option>> GetAll()
         {
             return await dbContext.Options.ToListAsync();
+        }
+        
+        public async Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable)
+        {
+            var idsToExclude = optionsNotAvailable.Select(x => x.Id).ToList();
+            return await dbContext.Options.Where(o => !idsToExclude.Contains(o.Id)).ToListAsync();
         }
     }
 }

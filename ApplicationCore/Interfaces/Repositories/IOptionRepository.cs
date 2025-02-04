@@ -7,5 +7,6 @@ namespace Infrastructure.Repositories
     public interface IOptionRepository
     {
         Task<IList<Option>> GetAll();
+        Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable);
     }
 }

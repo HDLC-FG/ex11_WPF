@@ -19,5 +19,10 @@ namespace ApplicationCore.Services
         {
             return await optionRepository.GetAll();
         }
+
+        public async Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable)
+        {
+            return await optionRepository.GetAvailables(optionsNotAvailable);
+        }
     }
 }
