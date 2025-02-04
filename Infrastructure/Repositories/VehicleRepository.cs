@@ -17,12 +17,20 @@ namespace Infrastructure.Repositories
 
         public async Task<IList<Vehicle>> GetAll()
         {
-            return await dbContext.Vehicles.Include(v => v.Engine).ToListAsync();
+            return await dbContext.Vehicles.Include(v => v.Engine).Include(v => v.Options).ToListAsync();
         }
 
         public async Task Update(Vehicle vehicle)
         {
             dbContext.Entry(vehicle).State = EntityState.Modified;
+            foreach (var option in vehicle.Options)
+            {
+                //This is needed because entity framework by default use EntityState.Added instead of Modified if option exist, so we dot it manually
+                if (dbContext.Entry(option).State == EntityState.Added && await dbContext.Options.AnyAsync(o => o.Id == option.Id))
+                {
+                    dbContext.Entry(option).State = EntityState.Modified;
+                }
+            }
             await dbContext.SaveChangesAsync();
         }
 
