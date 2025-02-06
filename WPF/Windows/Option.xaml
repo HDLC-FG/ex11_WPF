@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:WPF.Windows"
+        xmlns:viewmodels="clr-namespace:WPF.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:OptionViewModel}"
         mc:Ignorable="d"
         Title="Option" Height="200" Width="200">
     <Grid>

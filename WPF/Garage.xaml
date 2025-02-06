@@ -21,9 +21,9 @@
             <Expander DockPanel.Dock="Right" Background="Gray" ExpandDirection="Right" IsExpanded="True">
                 <userControls:AddOrUpdateVehicle 
                     EngineTypes="{Binding EngineTypes}"
-                    DataContextVehicle="{Binding SelectedVehicle}" 
+                    DataContextVehicle="{Binding SelectedVehicle}"
                     ApplyCommand="{Binding UpdateVehicleCommand}"
-                    OptionsCommand="{Binding ShowOptionsCommand}"/>
+                    AddOptionsCommand="{Binding ShowOptionsCommand}"/>
             </Expander>
             
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">

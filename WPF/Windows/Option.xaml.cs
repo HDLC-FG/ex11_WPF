@@ -27,7 +27,7 @@ namespace WPF.Windows
 
         public Option(Vehicle selectedVehicle, IVehicleService vehicleService, IOptionService optionService)
         {                        
-            DataContext = new OptionViewModel(selectedVehicle, vehicleService, optionService, this);
+            DataContext = new OptionViewModel(selectedVehicle, optionService, this);
 
             InitializeComponent();
         }

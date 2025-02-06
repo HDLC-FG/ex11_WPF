@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using ApplicationCore.Models;
+using WPF.Converters;
 using WPF.Events;
 using static ApplicationCore.Enums;
 
@@ -16,6 +14,11 @@ namespace WPF.Shared.UserControls
     /// </summary>
     public partial class AddOrUpdateVehicle : UserControl
     {
+        public AddOrUpdateVehicle()
+        {
+            InitializeComponent();
+        }
+
         public static readonly DependencyProperty DataContextVehicleProperty =
             DependencyProperty.Register(
                 "DataContextVehicle",
@@ -55,22 +58,30 @@ namespace WPF.Shared.UserControls
             set { SetValue(ApplyCommandProperty, value); }
         }
 
-        public static readonly DependencyProperty OptionsCommandProperty =
+        public static readonly DependencyProperty AddOptionsCommandProperty =
             DependencyProperty.Register(
-                "OptionsCommand",
+                "AddOptionsCommand",
                 typeof(ICommand),
                 typeof(AddOrUpdateVehicle),
                 new PropertyMetadata(null));
 
-        public ICommand OptionsCommand
+        public ICommand AddOptionsCommand
         {
-            get { return (ICommand)GetValue(OptionsCommandProperty); }
-            set { SetValue(OptionsCommandProperty, value); }
+            get { return (ICommand)GetValue(AddOptionsCommandProperty); }
+            set { SetValue(AddOptionsCommandProperty, value); }
         }
 
-        public AddOrUpdateVehicle()
+        public ICommand DeleteOptionCommand => new Command(execute => DeleteOption(execute), canExecute => true);
+
+        private void DeleteOption(object selectedItems)
         {
-            InitializeComponent();
+            var options = SelectedItemsConverter<Option>.ConvertToArray(selectedItems);
+            var vehicle = DataContextVehicle;
+
+            foreach (var option in options)
+            {
+                vehicle.Options.Remove(option);
+            }
         }
     }
 }

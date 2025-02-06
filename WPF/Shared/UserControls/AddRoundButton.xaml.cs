@@ -9,17 +9,17 @@ namespace WPF.Shared.UserControls
     /// </summary>
     public partial class AddRoundButton : UserControl
     {
-        public static readonly DependencyProperty OptionsCommandProperty =
+        public static readonly DependencyProperty ActionCommandProperty =
             DependencyProperty.Register(
-                "OptionsCommand",
+                "ActionCommand",
                 typeof(ICommand),
                 typeof(AddRoundButton),
                 new PropertyMetadata(null));
 
-        public ICommand OptionsCommand
+        public ICommand ActionCommand
         {
-            get { return (ICommand)GetValue(OptionsCommandProperty); }
-            set { SetValue(OptionsCommandProperty, value); }
+            get { return (ICommand)GetValue(ActionCommandProperty); }
+            set { SetValue(ActionCommandProperty, value); }
         }
 
         public AddRoundButton()

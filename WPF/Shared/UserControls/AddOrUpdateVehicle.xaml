@@ -4,17 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF.Shared.UserControls"
+             d:DataContext="{d:DesignInstance Type=local:AddOrUpdateVehicle}"
              mc:Ignorable="d">
 
-    <Grid Width="180" DataContext="{Binding DataContextVehicle, RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}">
+    <Grid Width="180" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}">
         <StackPanel Orientation="Vertical" Margin="5, 0, 15, 0">
             <Label Content="Informations du véhicule :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-            <Label Content="{Binding Name}" ContentStringFormat="Modèle : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-            <Label Content="{Binding Brand}" ContentStringFormat="Marque : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-            <Label Content="{Binding Price}" ContentStringFormat="Prix du véhicule : {0:C}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
+            <Label Content="{Binding DataContextVehicle.Name}" ContentStringFormat="Modèle : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
+            <Label Content="{Binding DataContextVehicle.Brand}" ContentStringFormat="Marque : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
+            <Label Content="{Binding DataContextVehicle.Price}" ContentStringFormat="Prix du véhicule : {0:C}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
             <Label Content="Informations du moteur :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-            <DataGrid ItemsSource="{Binding EngineTypes, RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}"
-                  SelectedItem="{Binding Engine.Type, Mode=TwoWay}"
+            <DataGrid ItemsSource="{Binding EngineTypes}"
+                  SelectedItem="{Binding DataContextVehicle.Engine.Type, Mode=TwoWay}"
                   AutoGenerateColumns="False"
                   CellStyle="{DynamicResource DataGridCellStyle}"
                   ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
@@ -28,33 +29,40 @@
             </DataGrid>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Cynlindrée du moteur : " Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                <TextBox TextWrapping="NoWrap" Text="{Binding Engine.Horsepower}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
+                <TextBox TextWrapping="NoWrap" Text="{Binding DataContextVehicle.Engine.Horsepower}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
                 <Label Content=" chevaux" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Prix du moteur : " Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                <TextBox TextWrapping="NoWrap" Text="{Binding Engine.Price}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
+                <TextBox TextWrapping="NoWrap" Text="{Binding DataContextVehicle.Engine.Price}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Liste des options : " Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-                <local:AddRoundButton x:Name="AddOption"
-                                      OptionsCommand="{Binding OptionsCommand, RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}"/>
+                <local:AddRoundButton x:Name="AddOption" ActionCommand="{Binding AddOptionsCommand}"/>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding Options}"
+            <DataGrid ItemsSource="{Binding DataContextVehicle.Options}"
                       MaxHeight="100"      
                       AutoGenerateColumns="False"
                       CellStyle="{DynamicResource DataGridCellStyle}"
                       ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
                       HorizontalAlignment="Stretch"
                       HeadersVisibility="Column"
-                      SelectionMode="Single"
+                      SelectionMode="Extended"
+                      SelectionUnit="FullRow"
                       IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom :" Width="*" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Prix :" Width="*" Binding="{Binding Price, StringFormat=C}" />
                 </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Supprimer" 
+                                  CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                  Command="{Binding DeleteOptionCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
-            <TextBlock Text="{Binding TotalPrice, StringFormat='Total des prix : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
+            <TextBlock Text="{Binding DataContextVehicle.TotalPrice, StringFormat='Total des prix : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
             <Button x:Name="Apply"
                 Content="Appliquer" 
                 Width="auto"
@@ -65,7 +73,7 @@
                 Background="{StaticResource IsSelectedColorBrush}" 
                 BorderThickness="2"
                 BorderBrush="{StaticResource PrimaryColorBrush}" 
-                Command="{Binding ApplyCommand, RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}" />
+                Command="{Binding ApplyCommand}" />
         </StackPanel>
     </Grid>
 
