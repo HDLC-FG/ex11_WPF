@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace ApplicationCore.Models
@@ -10,7 +11,7 @@ namespace ApplicationCore.Models
         public string Brand { get; set; }
         public decimal Price { get; set; }
         public virtual Engine Engine { get; set; }
-        public virtual IList<Option> Options { get; set; } = new List<Option>();
+        public virtual IList<Option> Options { get; set; } = new ObservableCollection<Option>();
         public decimal TotalPrice
         {
             get
