@@ -40,8 +40,10 @@ namespace WPF
             serviceCollection.AddSingleton<GarageWindow>();
             serviceCollection.AddSingleton<IGarageViewModel, GarageViewModel>();
             serviceCollection.AddScoped<IVehicleService, VehicleService>();
+            serviceCollection.AddScoped<IChassisService, ChassisService>();
             serviceCollection.AddScoped<IOptionService, OptionService>();
             serviceCollection.AddScoped<IVehicleRepository, VehicleRepository>();
+            serviceCollection.AddScoped<IChassisRepository, ChassisRepository>();
             serviceCollection.AddScoped<IOptionRepository, OptionRepository>();
 
             ServiceProvider = serviceCollection.BuildServiceProvider();

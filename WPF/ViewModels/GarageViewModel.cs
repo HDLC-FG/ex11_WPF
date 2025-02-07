@@ -15,12 +15,14 @@ namespace WPF.ViewModels
     public class GarageViewModel : NotifyPropertyChanged, IGarageViewModel
     {
         private readonly IVehicleService vehicleService;
+        private readonly IChassisService chassisService;
         private readonly IOptionService optionService;
         private Vehicle selectedVehicle;
 
-        public GarageViewModel(IVehicleService vehicleService, IOptionService optionService)
+        public GarageViewModel(IVehicleService vehicleService, IChassisService chassisService, IOptionService optionService)
         {
             this.vehicleService = vehicleService;
+            this.chassisService = chassisService;
             this.optionService = optionService;
 
             EngineTypes = Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToList();
@@ -41,7 +43,8 @@ namespace WPF.ViewModels
             }
         }
         public ICommand UpdateVehicleCommand => new Command(execute => UpdateVehicle());
-        public ICommand ShowOptionsCommand => new Command(execute => ShowOptionWindow());
+        public ICommand AddOptionsCommand => new Command(execute => ShowOptionWindow());
+        public ICommand CreateVehicleCommand => new Command(execute => ShowCreateVehicleWindow());
 
         private void UpdateVehicle()
         {
@@ -52,6 +55,12 @@ namespace WPF.ViewModels
         {
             var optionWindow = new Windows.Option(selectedVehicle, vehicleService, optionService);
             optionWindow.ShowDialog();
+        }
+
+        private void ShowCreateVehicleWindow()
+        {
+            var createVehicleWindow = new Windows.CreateVehicle(selectedVehicle, vehicleService, optionService, chassisService);
+            createVehicleWindow.ShowDialog();
         }
     }
 }

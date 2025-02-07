@@ -23,12 +23,13 @@
                     EngineTypes="{Binding EngineTypes}"
                     DataContextVehicle="{Binding SelectedVehicle}"
                     ApplyCommand="{Binding UpdateVehicleCommand}"
-                    AddOptionsCommand="{Binding AddOptionsCommand}"/>
+                    AddOptionsCommand="{Binding AddOptionsCommand}"
+                    Width="180"
+                    Margin="5, 0, 15, 0" />
             </Expander>
-            
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                 <Label Content="Liste des véhicules :" Style="{StaticResource LabelTitleFontStyle}" />
-                <userControls:AddRoundButton x:Name="AddVehicle" />
+                <userControls:AddRoundButton ActionCommand="{Binding CreateVehicleCommand}" />
             </StackPanel>
             <DataGrid Name="VehicleList"
                       ItemsSource="{Binding Vehicles}"

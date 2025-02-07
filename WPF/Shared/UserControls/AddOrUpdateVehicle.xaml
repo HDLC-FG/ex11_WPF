@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF.Shared.UserControls"
              d:DataContext="{d:DesignInstance Type=local:AddOrUpdateVehicle}"
-             mc:Ignorable="d" Width="180">
+             d:Width="180"
+             mc:Ignorable="d"
+             Language="fr-FR">
 
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}">
-        <StackPanel Orientation="Vertical" Margin="5, 0, 15, 0">
+        <StackPanel Orientation="Vertical">
             <Label Content="Informations du véhicule :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
             <Label Content="{Binding DataContextVehicle.Chassis.Name}" ContentStringFormat="Modèle : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
             <Label Content="{Binding DataContextVehicle.Chassis.Brand}" ContentStringFormat="Marque : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
@@ -41,7 +43,7 @@
                 <local:AddRoundButton x:Name="AddOption" ActionCommand="{Binding AddOptionsCommand}"/>
             </StackPanel>
             <DataGrid ItemsSource="{Binding DataContextVehicle.Options}"
-                      MaxHeight="100"      
+                      MaxHeight="100"
                       AutoGenerateColumns="False"
                       CellStyle="{DynamicResource DataGridCellStyle}"
                       ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"

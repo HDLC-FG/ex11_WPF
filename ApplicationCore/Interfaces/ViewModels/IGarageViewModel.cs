@@ -10,7 +10,6 @@ namespace ApplicationCore.Interfaces.ViewModels
         IList<Enums.EngineType> EngineTypes { get; set; }
         ObservableCollection<Vehicle> Vehicles { get; set; }
         Vehicle SelectedVehicle { get; set; }
-        ICommand ShowOptionsCommand { get; }
         ICommand UpdateVehicleCommand { get; }
         ICommand AddOptionsCommand { get; }
         ICommand CreateVehicleCommand { get; }

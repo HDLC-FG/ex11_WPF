@@ -93,8 +93,12 @@
     <Compile Include="Shared\UserControls\AddRoundButton.xaml.cs">
       <DependentUpon>AddRoundButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
     <Compile Include="ViewModels\GarageViewModel.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
+    <Compile Include="Windows\CreateVehicle.xaml.cs">
+      <DependentUpon>CreateVehicle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Option.xaml.cs">
       <DependentUpon>Option.xaml</DependentUpon>
     </Compile>
@@ -110,6 +114,10 @@
       <DependentUpon>Garage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\CreateVehicle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Option.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,0 +1,45 @@
+﻿<Window x:Class="WPF.Windows.CreateVehicle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Windows"
+        xmlns:viewModels="clr-namespace:WPF.ViewModels"
+        xmlns:userControls="clr-namespace:WPF.Shared.UserControls"
+        d:DataContext="{d:DesignInstance Type=viewModels:CreateVehicleViewModel}"
+        mc:Ignorable="d"
+        Language="fr-FR"
+        Title="Créer un véhicule" Height="500" Width="300" MinWidth="300">
+    
+    <Grid Margin="5, 0, 5, 0">
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Liste des véhicules disponibles :" Style="{StaticResource LabelTitleFontStyle}" />
+                <DataGrid x:Name="ChassisDataGrid"
+                          ItemsSource="{Binding Chassis}"
+                          SelectedItem="{Binding SelectedChassis, UpdateSourceTrigger=PropertyChanged}"
+                          AutoGenerateColumns="False"
+                          AlternationCount="2"
+                          RowStyle="{DynamicResource DataGridRowStyle}"
+                          CellStyle="{DynamicResource DataGridCellStyle}"
+                          ColumnHeaderStyle="{DynamicResource DataGridRowHeaderStyle}"
+                          HorizontalAlignment="Stretch"
+                          HeadersVisibility="Column"
+                          SelectionMode="Single"
+                          IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nom :" Width="3*" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Marque :" Width="3*" Binding="{Binding Brand}" />
+                        <DataGridTextColumn Header="Prix du véhicule :" Width="4*" Binding="{Binding Price, StringFormat=C}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <userControls:AddOrUpdateVehicle
+                    EngineTypes="{Binding EngineTypes}"
+                    DataContextVehicle="{Binding SelectedVehicle}"
+                    ApplyCommand="{Binding CreateVehicleCommand}"
+                    AddOptionsCommand="{Binding AddOptionsCommand}"
+                    HorizontalAlignment="Stretch" />                  
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

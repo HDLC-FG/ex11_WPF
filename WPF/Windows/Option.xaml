@@ -8,7 +8,8 @@
         xmlns:viewmodels="clr-namespace:WPF.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewmodels:OptionViewModel}"
         mc:Ignorable="d"
-        Title="Option" Height="200" Width="200">
+        Language="fr-FR"
+        Title="Ajouter une option" Height="200" Width="200">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label Content="Liste des options disponibles :" Style="{StaticResource LabelTitleFontStyle}" />
