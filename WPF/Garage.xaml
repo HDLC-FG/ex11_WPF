@@ -23,6 +23,8 @@
                     EngineTypes="{Binding EngineTypes}"
                     DataContextVehicle="{Binding SelectedVehicle}"
                     ApplyCommand="{Binding UpdateVehicleCommand}"
+                    ApplyLabel="Appliquer"
+                    ApplyBackground="{StaticResource IsSelectedColorBrush}"
                     AddOptionsCommand="{Binding AddOptionsCommand}"
                     Width="180"
                     Margin="5, 0, 15, 0" />

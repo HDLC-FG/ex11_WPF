@@ -37,6 +37,8 @@
                     EngineTypes="{Binding EngineTypes}"
                     DataContextVehicle="{Binding SelectedVehicle}"
                     ApplyCommand="{Binding CreateVehicleCommand}"
+                    ApplyLabel="Créer"
+                    ApplyBackground="{StaticResource SuccessColorBrush}"
                     AddOptionsCommand="{Binding AddOptionsCommand}"
                     HorizontalAlignment="Stretch" />                  
             </StackPanel>

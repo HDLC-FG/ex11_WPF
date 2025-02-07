@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using ApplicationCore.Models;
 using WPF.Converters;
 using WPF.Events;
@@ -56,6 +57,32 @@ namespace WPF.Shared.UserControls
         {
             get { return (ICommand)GetValue(ApplyCommandProperty); }
             set { SetValue(ApplyCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ApplyLabelProperty =
+            DependencyProperty.Register(
+                "ApplyLabel",
+                typeof(string),
+                typeof(AddOrUpdateVehicle),
+                new PropertyMetadata("Appliquer"));
+
+        public string ApplyLabel
+        {
+            get { return (string)GetValue(ApplyLabelProperty); }
+            set { SetValue(ApplyLabelProperty, value); }
+        }
+
+        public static readonly DependencyProperty ApplyBackgroundProperty =
+           DependencyProperty.Register(
+               "ApplyBackground",
+               typeof(SolidColorBrush),
+               typeof(AddOrUpdateVehicle),
+               new PropertyMetadata(Application.Current.Resources["IsSelectedColorBrush"]));
+
+        public SolidColorBrush ApplyBackground
+        {
+            get { return (SolidColorBrush)GetValue(ApplyBackgroundProperty); }
+            set { SetValue(ApplyBackgroundProperty, value); }
         }
 
         public static readonly DependencyProperty AddOptionsCommandProperty =

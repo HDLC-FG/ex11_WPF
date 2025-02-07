@@ -66,13 +66,13 @@
             </DataGrid>
             <TextBlock Text="{Binding DataContextVehicle.TotalPrice, StringFormat='Total des prix : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
             <Button x:Name="Apply"
-                Content="Appliquer" 
+                Content="{Binding ApplyLabel}" 
                 Width="auto"
                 Margin="10"
                 Padding="8, 3, 8, 3"
                 HorizontalAlignment="Center"
                 FontWeight="Bold" 
-                Background="{StaticResource IsSelectedColorBrush}" 
+                Background="{Binding ApplyBackground}" 
                 BorderThickness="2"
                 BorderBrush="{StaticResource PrimaryColorBrush}" 
                 Command="{Binding ApplyCommand}" />
