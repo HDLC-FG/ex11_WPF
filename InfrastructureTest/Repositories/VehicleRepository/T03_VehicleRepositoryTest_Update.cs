@@ -20,8 +20,12 @@ namespace InfrastructureTest.Repositories
                 {
                     var addVehicle = new Vehicle
                     {
-                        Brand = "Renault",
-                        Name = "Megane",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Renault",
+                            Name = "Megane",
+                            Price = 12000
+                        },
                         Engine = new Engine
                         {
                             Horsepower = 100,
@@ -35,22 +39,21 @@ namespace InfrastructureTest.Repositories
                                 Name= "GPS",
                                 Price = 200
                             }
-                        },
-                        Price = 12000
+                        }
                     };
                     dbContext.Vehicles.Add(addVehicle);
                     dbContext.SaveChanges();
 
                     var repository = new VehicleRepository(dbContext);
 
-                    addVehicle.Brand = "Peugeot";
-                    addVehicle.Name = "208";
+                    addVehicle.Chassis.Brand = "Peugeot";
+                    addVehicle.Chassis.Name = "208";
+                    addVehicle.Chassis.Price = 13000;
                     addVehicle.Engine.Horsepower = 120;
                     addVehicle.Engine.Price = 9000;
                     addVehicle.Engine.Type = Enums.EngineType.Diesel;
                     addVehicle.Options[0].Name = "Climatisation";
                     addVehicle.Options[0].Price = 400;
-                    addVehicle.Price = 13000;
 
                     repository.Update(addVehicle).Wait();
 
@@ -60,8 +63,10 @@ namespace InfrastructureTest.Repositories
                     var vehicleUpdated = result[0];
                     Assert.IsNotNull(vehicleUpdated);
                     Assert.AreEqual(1, vehicleUpdated.Id);
-                    Assert.AreEqual("Peugeot", vehicleUpdated.Brand);
-                    Assert.AreEqual("208", vehicleUpdated.Name);
+                    Assert.IsNotNull(vehicleUpdated.Chassis);
+                    Assert.AreEqual("Peugeot", vehicleUpdated.Chassis.Brand);
+                    Assert.AreEqual("208", vehicleUpdated.Chassis.Name);
+                    Assert.AreEqual(13000, vehicleUpdated.Chassis.Price);
                     var engineUpdated = vehicleUpdated.Engine;
                     Assert.IsNotNull(engineUpdated);
                     Assert.AreEqual(1, engineUpdated.Id);
@@ -74,7 +79,6 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, optionUpdated.Id);
                     Assert.AreEqual("Climatisation", optionUpdated.Name);
                     Assert.AreEqual(400, optionUpdated.Price);
-                    Assert.AreEqual(13000, vehicleUpdated.Price);
                     Assert.AreEqual(22400, vehicleUpdated.TotalPrice);
                 }
             }
@@ -90,8 +94,12 @@ namespace InfrastructureTest.Repositories
                     var addVehicle = new Vehicle
                     {
                         Id = 1,
-                        Brand = "Renault",
-                        Name = "Megane",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Renault",
+                            Name = "Megane",
+                            Price = 10000
+                        },
                         Engine = new Engine
                         {
                             Id = 1,
@@ -118,7 +126,11 @@ namespace InfrastructureTest.Repositories
                         entry.State = EntityState.Detached;
                     }
 
-                    var vehicle = dbContext.Vehicles.Include(v => v.Engine).Include(v => v.Options).FirstOrDefault();
+                    var vehicle = dbContext.Vehicles
+                        .Include(v => v.Chassis)
+                        .Include(v => v.Engine)
+                        .Include(v => v.Options)
+                        .FirstOrDefault();
                     var engines = dbContext.Engines.ToList();
                     vehicle.Engine = engines[1];
 
@@ -145,8 +157,10 @@ namespace InfrastructureTest.Repositories
 
                     var vehicleBDD = vehiclesBDD[0];
                     Assert.AreEqual(1, vehicleBDD.Id);
-                    Assert.AreEqual("Renault", vehicleBDD.Brand);
-                    Assert.AreEqual("Megane", vehicleBDD.Name);
+                    Assert.IsNotNull(vehicleBDD.Chassis);
+                    Assert.AreEqual("Renault", vehicleBDD.Chassis.Brand);
+                    Assert.AreEqual("Megane", vehicleBDD.Chassis.Name);
+                    Assert.AreEqual(10000, vehicleBDD.Chassis.Price);
 
                     var engine = vehicleBDD.Engine;
                     Assert.AreEqual(2, engine.Id);
@@ -170,8 +184,12 @@ namespace InfrastructureTest.Repositories
                     dbContext.Vehicles.Add(new Vehicle
                     {
                         Id = 1,
-                        Brand = "Renault",
-                        Name = "Megane",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Renault",
+                            Name = "Megane",
+                            Price = 10000
+                        },
                         Engine = new Engine(),
                         Options = new ObservableCollection<Option>
                         {
@@ -196,7 +214,11 @@ namespace InfrastructureTest.Repositories
                         entry.State = EntityState.Detached;
                     }
 
-                    var model = dbContext.Vehicles.Include(v => v.Engine).Include(v => v.Options).FirstOrDefault();
+                    var model = dbContext.Vehicles
+                        .Include(v => v.Chassis)
+                        .Include(v => v.Engine)
+                        .Include(v => v.Options)
+                        .FirstOrDefault();
                     model.Options.Remove(model.Options.First());
 
                     var vehicleRepository = new VehicleRepository(dbContext);
@@ -219,8 +241,10 @@ namespace InfrastructureTest.Repositories
 
                     var vehicleBDD = vehiclesBDD.FirstOrDefault();
                     Assert.IsNotNull(vehicleBDD);
-                    Assert.AreEqual("Renault", vehicleBDD.Brand);
-                    Assert.AreEqual("Megane", vehicleBDD.Name);
+                    Assert.IsNotNull(vehicleBDD.Chassis);
+                    Assert.AreEqual("Renault", vehicleBDD.Chassis.Brand);
+                    Assert.AreEqual("Megane", vehicleBDD.Chassis.Name);
+                    Assert.AreEqual(10000, vehicleBDD.Chassis.Price);
 
                     Assert.IsNotNull(vehicleBDD.Options);
                     Assert.AreEqual(1, vehicleBDD.Options.Count);
@@ -242,8 +266,12 @@ namespace InfrastructureTest.Repositories
                     dbContext.Vehicles.Add(new Vehicle
                     {
                         Id = 1,
-                        Brand = "Renault",
-                        Name = "Megane",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Renault",
+                            Name = "Megane",
+                            Price = 10000
+                        },
                         Engine = new Engine(),
                         Options = new ObservableCollection<Option>
                         {
@@ -262,7 +290,11 @@ namespace InfrastructureTest.Repositories
                         entry.State = EntityState.Detached;
                     }
 
-                    var vehicle = dbContext.Vehicles.Include(v => v.Engine).Include(v => v.Options).FirstOrDefault();
+                    var vehicle = dbContext.Vehicles
+                        .Include(v => v.Chassis)
+                        .Include(v => v.Engine)
+                        .Include(v => v.Options)
+                        .FirstOrDefault();
                     vehicle.Options.Add(new Option
                     {
                         Name = "Caméra de recul",
@@ -289,8 +321,10 @@ namespace InfrastructureTest.Repositories
 
                     var vehicleBDD = vehiclesBDD.FirstOrDefault();
                     Assert.IsNotNull(vehicleBDD);
-                    Assert.AreEqual("Renault", vehicleBDD.Brand);
-                    Assert.AreEqual("Megane", vehicleBDD.Name);
+                    Assert.IsNotNull(vehicleBDD.Chassis);
+                    Assert.AreEqual("Renault", vehicleBDD.Chassis.Brand);
+                    Assert.AreEqual("Megane", vehicleBDD.Chassis.Name);
+                    Assert.AreEqual(10000, vehicleBDD.Chassis.Price);
 
                     Assert.IsNotNull(vehicleBDD.Options);
                     Assert.AreEqual(2, vehicleBDD.Options.Count);
@@ -316,8 +350,12 @@ namespace InfrastructureTest.Repositories
                     dbContext.Vehicles.Add(new Vehicle
                     {
                         Id = 1,
-                        Brand = "Renault",
-                        Name = "Megane",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Renault",
+                            Name = "Megane",
+                            Price = 10000
+                        },
                         Engine = new Engine(),
                         Options = new ObservableCollection<Option>
                         {
@@ -350,7 +388,11 @@ namespace InfrastructureTest.Repositories
                         entry.State = EntityState.Detached;
                     }
 
-                    var vehicle = dbContext.Vehicles.Include(v => v.Engine).Include(v => v.Options).FirstOrDefault();
+                    var vehicle = dbContext.Vehicles
+                        .Include(v => v.Chassis)
+                        .Include(v => v.Engine)
+                        .Include(v => v.Options)
+                        .FirstOrDefault();
                     var newOption = dbContext.Options.FirstOrDefault(o => o.Id == 3);
 
                     vehicle.Options[0] = newOption;
@@ -379,8 +421,10 @@ namespace InfrastructureTest.Repositories
 
                     var vehicleBDD = vehiclesBDD.FirstOrDefault();
                     Assert.IsNotNull(vehicleBDD);
-                    Assert.AreEqual("Renault", vehicleBDD.Brand);
-                    Assert.AreEqual("Megane", vehicleBDD.Name);
+                    Assert.IsNotNull(vehicleBDD.Chassis);
+                    Assert.AreEqual("Renault", vehicleBDD.Chassis.Brand);
+                    Assert.AreEqual("Megane", vehicleBDD.Chassis.Name);
+                    Assert.AreEqual(10000, vehicleBDD.Chassis.Price);
 
                     Assert.IsNotNull(vehicleBDD.Options);
                     Assert.AreEqual(2, vehicleBDD.Options.Count);

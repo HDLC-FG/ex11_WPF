@@ -17,7 +17,11 @@ namespace Infrastructure.Repositories
 
         public async Task<IList<Vehicle>> GetAll()
         {
-            return await dbContext.Vehicles.Include(v => v.Engine).Include(v => v.Options).ToListAsync();
+            return await dbContext.Vehicles
+                .Include(v => v.Chassis)
+                .Include(v => v.Engine)
+                .Include(v => v.Options)
+                .ToListAsync();
         }
 
         public async Task Update(Vehicle vehicle)

@@ -14,8 +14,12 @@ namespace ApplicationCoreTest.Services
         {
             var vehicle = new Vehicle
             {
-                Brand = "Renault",
-                Name = "Megane",
+                Chassis = new Chassis
+                {
+                    Brand = "Renault",
+                    Name = "Megane",
+                    Price = 12000
+                },                
                 Engine = new Engine
                 {
                     Horsepower = 100,
@@ -29,8 +33,7 @@ namespace ApplicationCoreTest.Services
                         Name= "GPS",
                         Price = 200
                     }
-                },
-                Price = 12000
+                }
             };
             var mockVehicleRepository = new Mock<IVehicleRepository>(MockBehavior.Strict);
             mockVehicleRepository.Setup(x => x.Update(vehicle)).Returns(Task.CompletedTask);

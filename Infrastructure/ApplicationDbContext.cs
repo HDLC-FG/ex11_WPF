@@ -7,6 +7,7 @@ namespace Infrastructure
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Chassis> Chassis { get; set; }
         public DbSet<Engine> Engines { get; set; }
         public DbSet<Option> Options { get; set; }
 
@@ -24,6 +25,9 @@ namespace Infrastructure
                 .HasKey(v => v.Id)
                 .Property(v => v.Id)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<Vehicle>()
+                .HasRequired(v => v.Chassis);
 
             modelBuilder.Entity<Vehicle>()
                 .HasRequired(v => v.Engine);

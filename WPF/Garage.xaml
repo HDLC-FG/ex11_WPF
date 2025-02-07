@@ -23,7 +23,7 @@
                     EngineTypes="{Binding EngineTypes}"
                     DataContextVehicle="{Binding SelectedVehicle}"
                     ApplyCommand="{Binding UpdateVehicleCommand}"
-                    AddOptionsCommand="{Binding ShowOptionsCommand}"/>
+                    AddOptionsCommand="{Binding AddOptionsCommand}"/>
             </Expander>
             
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
@@ -41,9 +41,9 @@
                       SelectionMode="Single"
                       IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="Marque" Binding="{Binding Brand}" />
-                    <DataGridTextColumn Header="Prix véhicule" Binding="{Binding Price, StringFormat=C}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Chassis.Name}" />
+                    <DataGridTextColumn Header="Marque" Binding="{Binding Chassis.Brand}" />
+                    <DataGridTextColumn Header="Prix véhicule" Binding="{Binding Chassis.Price, StringFormat=C}" />
                     <DataGridTextColumn Header="Moteur" Binding="{Binding Engine.Type}" />
                     <DataGridTextColumn Header="Cylindrée" Binding="{Binding Engine.Horsepower}" />
                     <DataGridTextColumn Header="Prix moteur" Binding="{Binding Engine.Price, StringFormat=C}" />

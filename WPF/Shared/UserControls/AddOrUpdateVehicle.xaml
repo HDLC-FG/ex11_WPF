@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF.Shared.UserControls"
              d:DataContext="{d:DesignInstance Type=local:AddOrUpdateVehicle}"
-             mc:Ignorable="d">
+             mc:Ignorable="d" Width="180">
 
-    <Grid Width="180" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:AddOrUpdateVehicle}}">
         <StackPanel Orientation="Vertical" Margin="5, 0, 15, 0">
             <Label Content="Informations du véhicule :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
-            <Label Content="{Binding DataContextVehicle.Name}" ContentStringFormat="Modèle : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-            <Label Content="{Binding DataContextVehicle.Brand}" ContentStringFormat="Marque : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-            <Label Content="{Binding DataContextVehicle.Price}" ContentStringFormat="Prix du véhicule : {0:C}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
+            <Label Content="{Binding DataContextVehicle.Chassis.Name}" ContentStringFormat="Modèle : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
+            <Label Content="{Binding DataContextVehicle.Chassis.Brand}" ContentStringFormat="Marque : {0}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
+            <Label Content="{Binding DataContextVehicle.Chassis.Price}" ContentStringFormat="Prix du véhicule : {0:C}" Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
             <Label Content="Informations du moteur :" Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
             <DataGrid ItemsSource="{Binding EngineTypes}"
                   SelectedItem="{Binding DataContextVehicle.Engine.Type, Mode=TwoWay}"

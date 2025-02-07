@@ -35,8 +35,12 @@ namespace InfrastructureTest.Repositories
                 {
                     dbContext.Vehicles.Add(new Vehicle
                     {
-                        Brand = "Renault",
-                        Name = "Megane",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Renault",
+                            Name = "Megane",
+                            Price = 12000
+                        },                        
                         Engine = new Engine
                         {
                             Horsepower = 100,
@@ -50,13 +54,16 @@ namespace InfrastructureTest.Repositories
                                 Name= "GPS",
                                 Price = 200
                             }
-                        },
-                        Price = 12000
+                        }
                     });
                     dbContext.Vehicles.Add(new Vehicle
                     {
-                        Brand = "Peugeot",
-                        Name = "208",
+                        Chassis = new Chassis
+                        {
+                            Brand = "Peugeot",
+                            Name = "208",
+                            Price = 13000
+                        },
                         Engine = new Engine
                         {
                             Horsepower = 110,
@@ -75,8 +82,7 @@ namespace InfrastructureTest.Repositories
                                 Name= "Climatisation",
                                 Price = 400
                             }
-                        },
-                        Price = 13000
+                        }
                     });
                     dbContext.SaveChanges();
                     var repository = new VehicleRepository(dbContext);
@@ -88,8 +94,9 @@ namespace InfrastructureTest.Repositories
                     var vehicleRenault = result[0];
                     Assert.IsNotNull(vehicleRenault);
                     Assert.AreEqual(1, vehicleRenault.Id);
-                    Assert.AreEqual("Renault", vehicleRenault.Brand);
-                    Assert.AreEqual("Megane", vehicleRenault.Name);
+                    Assert.AreEqual("Renault", vehicleRenault.Chassis.Brand);
+                    Assert.AreEqual("Megane", vehicleRenault.Chassis.Name);
+                    Assert.AreEqual(12000, vehicleRenault.Chassis.Price);
                     var engineRenault = vehicleRenault.Engine;
                     Assert.IsNotNull(engineRenault);
                     Assert.AreEqual(1, engineRenault.Id);
@@ -102,14 +109,14 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, optionRenault.Id);
                     Assert.AreEqual("GPS", optionRenault.Name);
                     Assert.AreEqual(200, optionRenault.Price);
-                    Assert.AreEqual(12000, vehicleRenault.Price);
                     Assert.AreEqual(20200, vehicleRenault.TotalPrice);
 
                     var vehiclePeugeot = result[1];
                     Assert.IsNotNull(vehiclePeugeot);
                     Assert.AreEqual(2, vehiclePeugeot.Id);
-                    Assert.AreEqual("Peugeot", vehiclePeugeot.Brand);
-                    Assert.AreEqual("208", vehiclePeugeot.Name);
+                    Assert.AreEqual("Peugeot", vehiclePeugeot.Chassis.Brand);
+                    Assert.AreEqual("208", vehiclePeugeot.Chassis.Name);
+                    Assert.AreEqual(13000, vehiclePeugeot.Chassis.Price);
                     var enginePeugeot = vehiclePeugeot.Engine;
                     Assert.IsNotNull(enginePeugeot);
                     Assert.AreEqual(2, enginePeugeot.Id);
@@ -127,7 +134,6 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(3, optionPeugeot2.Id);
                     Assert.AreEqual("Climatisation", optionPeugeot2.Name);
                     Assert.AreEqual(400, optionPeugeot2.Price);
-                    Assert.AreEqual(13000, vehiclePeugeot.Price);
                     Assert.AreEqual(22700, vehiclePeugeot.TotalPrice);
                 }
             }

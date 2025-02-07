@@ -34,8 +34,12 @@ namespace ApplicationCoreTest.Services
                 new Vehicle
                 {
                     Id = 1,
-                    Brand = "Renault",
-                    Name = "Megane",
+                    Chassis = new Chassis
+                    {
+                        Brand = "Renault",
+                        Name = "Megane",
+                        Price = 12000
+                    },
                     Engine = new Engine
                     {
                         Id = 2,
@@ -51,14 +55,17 @@ namespace ApplicationCoreTest.Services
                             Name= "GPS",
                             Price = 200
                         }
-                    },
-                    Price = 12000
+                    }
                 },
                 new Vehicle
                 {
                     Id = 4,
-                    Brand = "Peugeot",
-                    Name = "208",
+                    Chassis = new Chassis
+                    {
+                        Brand = "Peugeot",
+                        Name = "208",
+                        Price = 13000
+                    },
                     Engine = new Engine
                     {
                         Id = 5,
@@ -80,8 +87,7 @@ namespace ApplicationCoreTest.Services
                             Name= "Climatisation",
                             Price = 400
                         }
-                    },
-                    Price = 13000
+                    }
                 }
             });
 
@@ -94,8 +100,9 @@ namespace ApplicationCoreTest.Services
             var vehicleRenault = result[0];
             Assert.IsNotNull(vehicleRenault);
             Assert.AreEqual(1, vehicleRenault.Id);
-            Assert.AreEqual("Renault", vehicleRenault.Brand);
-            Assert.AreEqual("Megane", vehicleRenault.Name);
+            Assert.AreEqual("Renault", vehicleRenault.Chassis.Brand);
+            Assert.AreEqual("Megane", vehicleRenault.Chassis.Name);
+            Assert.AreEqual(12000, vehicleRenault.Chassis.Price);
             var engineRenault = vehicleRenault.Engine;
             Assert.IsNotNull(engineRenault);
             Assert.AreEqual(2, engineRenault.Id);
@@ -108,14 +115,14 @@ namespace ApplicationCoreTest.Services
             Assert.AreEqual(3, optionRenault.Id);
             Assert.AreEqual("GPS", optionRenault.Name);
             Assert.AreEqual(200, optionRenault.Price);
-            Assert.AreEqual(12000, vehicleRenault.Price);
             Assert.AreEqual(20200, vehicleRenault.TotalPrice);
 
             var vehiclePeugeot = result[1];
             Assert.IsNotNull(vehiclePeugeot);
             Assert.AreEqual(4, vehiclePeugeot.Id);
-            Assert.AreEqual("Peugeot", vehiclePeugeot.Brand);
-            Assert.AreEqual("208", vehiclePeugeot.Name);
+            Assert.AreEqual("Peugeot", vehiclePeugeot.Chassis.Brand);
+            Assert.AreEqual("208", vehiclePeugeot.Chassis.Name);
+            Assert.AreEqual(13000, vehiclePeugeot.Chassis.Price);
             var enginePeugeot = vehiclePeugeot.Engine;
             Assert.IsNotNull(enginePeugeot);
             Assert.AreEqual(5, enginePeugeot.Id);
@@ -133,7 +140,6 @@ namespace ApplicationCoreTest.Services
             Assert.AreEqual(7, optionPeugeot2.Id);
             Assert.AreEqual("Climatisation", optionPeugeot2.Name);
             Assert.AreEqual(400, optionPeugeot2.Price);
-            Assert.AreEqual(13000, vehiclePeugeot.Price);
             Assert.AreEqual(22700, vehiclePeugeot.TotalPrice);
 
             mockVehicleRepository.Verify(x => x.GetAll(), Times.Once);

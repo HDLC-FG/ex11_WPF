@@ -18,8 +18,12 @@ namespace InfrastructureTest.Repositories
                 {
                     var vehicle = new Vehicle
                     {
+                        Chassis = new Chassis
+                        {
                         Brand = "Renault",
                         Name = "Megane",
+                            Price = 12000
+                        },
                         Engine = new Engine
                         {
                             Horsepower = 100,
@@ -33,8 +37,7 @@ namespace InfrastructureTest.Repositories
                                 Name= "GPS",
                                 Price = 200
                             }
-                        },
-                        Price = 12000
+                        }
                     };
                     var repository = new VehicleRepository(dbContext);
 
@@ -46,8 +49,9 @@ namespace InfrastructureTest.Repositories
                     var vehicleAdded = result[0];
                     Assert.IsNotNull(vehicleAdded);
                     Assert.AreEqual(1, vehicleAdded.Id);
-                    Assert.AreEqual("Renault", vehicleAdded.Brand);
-                    Assert.AreEqual("Megane", vehicleAdded.Name);
+                    Assert.AreEqual("Renault", vehicleAdded.Chassis.Brand);
+                    Assert.AreEqual("Megane", vehicleAdded.Chassis.Name);
+                    Assert.AreEqual(12000, vehicleAdded.Chassis.Price);
                     var engineAdded = vehicleAdded.Engine;
                     Assert.IsNotNull(engineAdded);
                     Assert.AreEqual(1, engineAdded.Id);

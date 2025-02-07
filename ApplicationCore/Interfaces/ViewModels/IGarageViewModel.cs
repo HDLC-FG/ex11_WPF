@@ -8,9 +8,11 @@ namespace ApplicationCore.Interfaces.ViewModels
     public interface IGarageViewModel
     {
         IList<Enums.EngineType> EngineTypes { get; set; }
+        ObservableCollection<Vehicle> Vehicles { get; set; }
         Vehicle SelectedVehicle { get; set; }
         ICommand ShowOptionsCommand { get; }
         ICommand UpdateVehicleCommand { get; }
-        ObservableCollection<Vehicle> Vehicles { get; set; }
+        ICommand AddOptionsCommand { get; }
+        ICommand CreateVehicleCommand { get; }
     }
 }
