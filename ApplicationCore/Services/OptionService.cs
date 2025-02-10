@@ -15,11 +15,6 @@ namespace ApplicationCore.Services
             this.optionRepository = optionRepository;
         }
 
-        public async Task<IList<Option>> GetAll()
-        {
-            return await optionRepository.GetAll();
-        }
-
         public async Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable)
         {
             return await optionRepository.GetAvailables(optionsNotAvailable);

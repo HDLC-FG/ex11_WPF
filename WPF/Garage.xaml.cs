@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
-using WPF.ViewModels;
+using WPF.ViewModels.Windows;
 
 namespace WPF
 {

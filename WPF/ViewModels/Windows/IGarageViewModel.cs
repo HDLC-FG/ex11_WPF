@@ -4,7 +4,7 @@ using System.Windows.Input;
 using ApplicationCore;
 using WPF.ViewModels.Entities;
 
-namespace WPF.ViewModels
+namespace WPF.ViewModels.Windows
 {
     public interface IGarageViewModel
     {

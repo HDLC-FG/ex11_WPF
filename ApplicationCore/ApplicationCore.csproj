@@ -44,7 +44,6 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Interfaces\Repositories\IChassisRepository.cs" />
     <Compile Include="Interfaces\Services\IChassisService.cs" />
-    <Compile Include="Interfaces\Repositories\IEngineRepository.cs" />
     <Compile Include="Interfaces\Repositories\IOptionRepository.cs" />
     <Compile Include="Interfaces\Repositories\IVehicleRepository.cs" />
     <Compile Include="Models\Chassis.cs" />
@@ -53,8 +52,6 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ChassisService.cs" />
-    <Compile Include="Services\EngineService.cs" />
-    <Compile Include="Interfaces\Services\IEngineService.cs" />
     <Compile Include="Interfaces\Services\IVehicleService.cs" />
     <Compile Include="Interfaces\Services\IOptionService.cs" />
     <Compile Include="Services\OptionService.cs" />

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Windows"
-        xmlns:viewModels="clr-namespace:WPF.ViewModels"
+        xmlns:viewModels="clr-namespace:WPF.ViewModels.Windows"
         xmlns:userControls="clr-namespace:WPF.Shared.UserControls"
         d:DataContext="{d:DesignInstance Type=viewModels:CreateVehicleViewModel}"
         mc:Ignorable="d"

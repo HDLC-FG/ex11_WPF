@@ -9,7 +9,7 @@ using ApplicationCore.Services;
 using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using WPF.ViewModels;
+using WPF.ViewModels.Windows;
 
 namespace WPF
 {

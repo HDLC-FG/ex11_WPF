@@ -7,9 +7,10 @@ using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
 using WPF.Events;
 using WPF.ViewModels.Entities;
+using WPF.Windows;
 using static ApplicationCore.Enums;
 
-namespace WPF.ViewModels
+namespace WPF.ViewModels.Windows
 {
     public class GarageViewModel : NotifyPropertyChanged, IGarageViewModel
     {
@@ -52,13 +53,13 @@ namespace WPF.ViewModels
 
         private void ShowOptionWindow()
         {
-            var addOptionWindow = new Windows.AddOption(selectedVehicle, vehicleService, optionService);
+            var addOptionWindow = new AddOption(selectedVehicle, vehicleService, optionService);
             addOptionWindow.ShowDialog();
         }
 
         private void ShowCreateVehicleWindow()
         {
-            var createVehicleWindow = new Windows.CreateVehicle(vehicleService, optionService, chassisService);
+            var createVehicleWindow = new CreateVehicle(vehicleService, optionService, chassisService);
             createVehicleWindow.ShowDialog();
         }
     }

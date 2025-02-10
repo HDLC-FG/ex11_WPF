@@ -14,11 +14,6 @@ namespace Infrastructure.Repositories
         {
             this.dbContext = dbContext;
         }
-
-        public async Task<IList<Option>> GetAll()
-        {
-            return await dbContext.Options.ToListAsync();
-        }
         
         public async Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable)
         {

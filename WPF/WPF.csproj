@@ -93,14 +93,14 @@
     <Compile Include="Shared\UserControls\AddRoundButton.xaml.cs">
       <DependentUpon>AddRoundButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
+    <Compile Include="ViewModels\Windows\CreateVehicleViewModel.cs" />
     <Compile Include="ViewModels\Entities\ChassisViewModel.cs" />
     <Compile Include="ViewModels\Entities\EngineViewModel.cs" />
     <Compile Include="ViewModels\Entities\OptionViewModel.cs" />
     <Compile Include="ViewModels\Entities\VehicleViewModel.cs" />
-    <Compile Include="ViewModels\GarageViewModel.cs" />
-    <Compile Include="ViewModels\AddOptionViewModel.cs" />
-    <Compile Include="ViewModels\IGarageViewModel.cs" />
+    <Compile Include="ViewModels\Windows\GarageViewModel.cs" />
+    <Compile Include="ViewModels\Windows\AddOptionViewModel.cs" />
+    <Compile Include="ViewModels\Windows\IGarageViewModel.cs" />
     <Compile Include="Windows\CreateVehicle.xaml.cs">
       <DependentUpon>CreateVehicle.xaml</DependentUpon>
     </Compile>
@@ -192,9 +192,7 @@
       <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

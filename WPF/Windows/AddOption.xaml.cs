@@ -1,10 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
-using ApplicationCore.Models;
 using WPF.Shared.UserControls;
-using WPF.ViewModels;
 using WPF.ViewModels.Entities;
+using WPF.ViewModels.Windows;
 
 namespace WPF.Windows
 {

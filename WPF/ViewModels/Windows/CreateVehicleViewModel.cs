@@ -7,19 +7,20 @@ using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
 using WPF.Events;
 using WPF.ViewModels.Entities;
+using WPF.Windows;
 using static ApplicationCore.Enums;
 
-namespace WPF.ViewModels
+namespace WPF.ViewModels.Windows
 {
     public class CreateVehicleViewModel : NotifyPropertyChanged
     {
         private readonly IVehicleService vehicleService;
         private readonly IOptionService optionService;
-        private readonly Windows.CreateVehicle createVehicleWindow;
+        private readonly CreateVehicle createVehicleWindow;
         private ChassisViewModel selectedChassis;
         private VehicleViewModel selectedVehicle;
 
-        public CreateVehicleViewModel(IVehicleService vehicleService, IOptionService optionService, IChassisService chassisService, Windows.CreateVehicle createVehicleWindow)
+        public CreateVehicleViewModel(IVehicleService vehicleService, IOptionService optionService, IChassisService chassisService, CreateVehicle createVehicleWindow)
         {
             this.vehicleService = vehicleService;
             this.optionService = optionService;
@@ -64,7 +65,7 @@ namespace WPF.ViewModels
 
         private void ShowOptionWindow()
         {
-            var optionWindow = new Windows.AddOption(SelectedVehicle, vehicleService, optionService);
+            var optionWindow = new AddOption(SelectedVehicle, vehicleService, optionService);
             optionWindow.ShowDialog();
         }
     }

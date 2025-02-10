@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF"
         xmlns:userControls="clr-namespace:WPF.Shared.UserControls"
         xmlns:converters="clr-namespace:WPF.Converters" 
-        xmlns:viewModels="clr-namespace:WPF.ViewModels" 
+        xmlns:viewModels="clr-namespace:WPF.ViewModels.Windows" 
         d:DataContext="{d:DesignInstance Type=viewModels:IGarageViewModel}"
         mc:Ignorable="d"
         Language="fr-FR"

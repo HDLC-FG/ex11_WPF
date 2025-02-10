@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using ApplicationCore.Interfaces.Services;
-using WPF.ViewModels;
+using WPF.ViewModels.Windows;
 
 namespace WPF.Windows
 {
