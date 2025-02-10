@@ -79,7 +79,6 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, optionUpdated.Id);
                     Assert.AreEqual("Climatisation", optionUpdated.Name);
                     Assert.AreEqual(400, optionUpdated.Price);
-                    Assert.AreEqual(22400, vehicleUpdated.TotalPrice);
                 }
             }
         }

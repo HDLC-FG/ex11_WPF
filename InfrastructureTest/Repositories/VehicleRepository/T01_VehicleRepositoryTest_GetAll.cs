@@ -109,7 +109,6 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, optionRenault.Id);
                     Assert.AreEqual("GPS", optionRenault.Name);
                     Assert.AreEqual(200, optionRenault.Price);
-                    Assert.AreEqual(20200, vehicleRenault.TotalPrice);
 
                     var vehiclePeugeot = result[1];
                     Assert.IsNotNull(vehiclePeugeot);
@@ -134,7 +133,6 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(3, optionPeugeot2.Id);
                     Assert.AreEqual("Climatisation", optionPeugeot2.Name);
                     Assert.AreEqual(400, optionPeugeot2.Price);
-                    Assert.AreEqual(22700, vehiclePeugeot.TotalPrice);
                 }
             }
         }

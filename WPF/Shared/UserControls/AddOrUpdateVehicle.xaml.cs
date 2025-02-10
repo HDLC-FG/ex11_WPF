@@ -102,7 +102,6 @@ namespace WPF.Shared.UserControls
 
         private void DeleteOption(object selectedItems)
         {
-            //TODO  : créer IViewModel pour SelectedItemsConverter
             var options = SelectedItemsConverter<OptionViewModel>.ConvertToArray(selectedItems);
 
             foreach (var option in options)
