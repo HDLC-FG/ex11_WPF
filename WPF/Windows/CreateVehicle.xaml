@@ -9,7 +9,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:CreateVehicleViewModel}"
         mc:Ignorable="d"
         Language="fr-FR"
-        Title="Créer un véhicule" Height="500" Width="300" MinWidth="300">
+        Title="Ajouter un véhicule" Height="500" Width="300" MinWidth="300">
     
     <Grid Margin="5, 0, 5, 0">
         <ScrollViewer>
@@ -37,7 +37,7 @@
                     EngineTypes="{Binding EngineTypes}"
                     DataContextVehicle="{Binding SelectedVehicle}"
                     ApplyCommand="{Binding CreateVehicleCommand}"
-                    ApplyLabel="Créer"
+                    ApplyLabel="Ajouter"
                     ApplyBackground="{StaticResource SuccessColorBrush}"
                     AddOptionsCommand="{Binding AddOptionsCommand}"
                     HorizontalAlignment="Stretch" />                  

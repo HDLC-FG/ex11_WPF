@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using ApplicationCore.Models;
 using WPF.Converters;
 using WPF.Events;
+using WPF.ViewModels.Entities;
 using static ApplicationCore.Enums;
 
 namespace WPF.Shared.UserControls
@@ -23,13 +23,13 @@ namespace WPF.Shared.UserControls
         public static readonly DependencyProperty DataContextVehicleProperty =
             DependencyProperty.Register(
                 "DataContextVehicle",
-                typeof(Vehicle),
+                typeof(VehicleViewModel),
                 typeof(AddOrUpdateVehicle),
                 new PropertyMetadata(null));
 
-        public Vehicle DataContextVehicle
+        public VehicleViewModel DataContextVehicle
         {
-            get { return (Vehicle)GetValue(DataContextVehicleProperty); }
+            get { return (VehicleViewModel)GetValue(DataContextVehicleProperty); }
             set { SetValue(DataContextVehicleProperty, value); }
         }
 
@@ -102,12 +102,12 @@ namespace WPF.Shared.UserControls
 
         private void DeleteOption(object selectedItems)
         {
-            var options = SelectedItemsConverter<Option>.ConvertToArray(selectedItems);
-            var vehicle = DataContextVehicle;
+            //TODO  : créer IViewModel pour SelectedItemsConverter
+            var options = SelectedItemsConverter<OptionViewModel>.ConvertToArray(selectedItems);
 
             foreach (var option in options)
             {
-                vehicle.Options.Remove(option);
+                DataContextVehicle.DeleteOption(option);
             }
         }
     }

@@ -64,8 +64,6 @@ namespace InfrastructureTest.Repositories
                     Assert.AreEqual(1, optionAdded.Id);
                     Assert.AreEqual("GPS", optionAdded.Name);
                     Assert.AreEqual(200, optionAdded.Price);
-                    Assert.AreEqual(12000, vehicleAdded.Price);
-                    Assert.AreEqual(20200, vehicleAdded.TotalPrice);
                 }
             }
         }

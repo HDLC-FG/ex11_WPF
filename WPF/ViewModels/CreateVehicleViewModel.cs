@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
-using ApplicationCore.Models;
 using WPF.Events;
+using WPF.ViewModels.Entities;
 using static ApplicationCore.Enums;
 
 namespace WPF.ViewModels
@@ -15,27 +15,35 @@ namespace WPF.ViewModels
     {
         private readonly IVehicleService vehicleService;
         private readonly IOptionService optionService;
-        private Chassis selectedChassis;
-        private Vehicle selectedVehicle;
+        private readonly Windows.CreateVehicle createVehicleWindow;
+        private ChassisViewModel selectedChassis;
+        private VehicleViewModel selectedVehicle;
 
-        public ObservableCollection<Chassis> Chassis { get; set; }
+        public CreateVehicleViewModel(IVehicleService vehicleService, IOptionService optionService, IChassisService chassisService, Windows.CreateVehicle createVehicleWindow)
+        {
+            this.vehicleService = vehicleService;
+            this.optionService = optionService;
+            this.createVehicleWindow = createVehicleWindow;
+
+            var chassis = Task.Run(() => chassisService.GetAll()).Result;
+            Chassis = new ObservableCollection<ChassisViewModel>(chassis.Select(c => new ChassisViewModel(c)));
+
+            EngineTypes = Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToList();
+        }
+
+        public ObservableCollection<ChassisViewModel> Chassis { get; set; }
         public IList<EngineType> EngineTypes { get; set; }
-        public Chassis SelectedChassis
+        public ChassisViewModel SelectedChassis
         {
             get { return selectedChassis; }
             set
             {
                 selectedChassis = value;
-                SelectedVehicle = new Vehicle
-                {
-                    Chassis = selectedChassis,
-                    Engine = new Engine(),
-                    Options = new ObservableCollection<Option>()
-                };
+                SelectedVehicle = new VehicleViewModel(selectedChassis);
                 OnPropertyChanged();
             }
         }
-        public Vehicle SelectedVehicle
+        public VehicleViewModel SelectedVehicle
         {
             get { return selectedVehicle; }
             set
@@ -45,28 +53,18 @@ namespace WPF.ViewModels
             }
         }
 
-        public CreateVehicleViewModel(Vehicle vehicle, IVehicleService vehicleService, IOptionService optionService, IChassisService chassisService, Windows.CreateVehicle createVehicle)
-        {
-            this.vehicleService = vehicleService;
-            this.optionService = optionService; 
-            
-            var chassis = Task.Run(() => chassisService.GetAll()).Result;
-            Chassis = new ObservableCollection<Chassis>(chassis);
-
-            EngineTypes = Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToList();
-        }
-
         public ICommand CreateVehicleCommand => new Command(execute => CreateVehicle());
         public ICommand AddOptionsCommand => new Command(execute => ShowOptionWindow());
 
         private void CreateVehicle()
         {
-            Task.Run(() => vehicleService.Add(SelectedVehicle)).Wait();
+            Task.Run(() => vehicleService.Add(SelectedVehicle.Model)).Wait();
+            createVehicleWindow.Close();
         }
 
         private void ShowOptionWindow()
         {
-            var optionWindow = new Windows.Option(SelectedVehicle, vehicleService, optionService);
+            var optionWindow = new Windows.AddOption(SelectedVehicle, vehicleService, optionService);
             optionWindow.ShowDialog();
         }
     }

@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows;
 using ApplicationCore.Interfaces.Repositories;
 using ApplicationCore.Interfaces.Services;
-using ApplicationCore.Interfaces.ViewModels;
 using ApplicationCore.Services;
 using Infrastructure;
 using Infrastructure.Repositories;

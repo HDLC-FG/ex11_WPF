@@ -36,7 +36,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Prix du moteur : " Width="auto" Padding="0" Style="{StaticResource LabelBodyFontStyle}" />
-                <TextBox TextWrapping="NoWrap" Text="{Binding DataContextVehicle.Engine.Price}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
+                <TextBox TextWrapping="NoWrap" Text="{Binding DataContextVehicle.Engine.Price, UpdateSourceTrigger=PropertyChanged}" Width="auto" Style="{StaticResource TextBoxBodyFontStyle}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Liste des options : " Padding="0, 5, 0, 5" Style="{StaticResource LabelTitleFontStyle}" />
@@ -64,7 +64,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-            <TextBlock Text="{Binding DataContextVehicle.TotalPrice, StringFormat='Total des prix : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
+            <TextBlock Text="{Binding DataContextVehicle.TotalPrice, StringFormat='Prix total : {0:C}'}" Padding="0" HorizontalAlignment="Center" Style="{StaticResource TextBlockTitleFontStyle}" />
             <Button x:Name="Apply"
                 Content="{Binding ApplyLabel}" 
                 Width="auto"

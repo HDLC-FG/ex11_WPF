@@ -94,13 +94,18 @@
       <DependentUpon>AddRoundButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CreateVehicleViewModel.cs" />
+    <Compile Include="ViewModels\Entities\ChassisViewModel.cs" />
+    <Compile Include="ViewModels\Entities\EngineViewModel.cs" />
+    <Compile Include="ViewModels\Entities\OptionViewModel.cs" />
+    <Compile Include="ViewModels\Entities\VehicleViewModel.cs" />
     <Compile Include="ViewModels\GarageViewModel.cs" />
-    <Compile Include="ViewModels\OptionViewModel.cs" />
+    <Compile Include="ViewModels\AddOptionViewModel.cs" />
+    <Compile Include="ViewModels\IGarageViewModel.cs" />
     <Compile Include="Windows\CreateVehicle.xaml.cs">
       <DependentUpon>CreateVehicle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Option.xaml.cs">
-      <DependentUpon>Option.xaml</DependentUpon>
+    <Compile Include="Windows\AddOption.xaml.cs">
+      <DependentUpon>AddOption.xaml</DependentUpon>
     </Compile>
     <Page Include="Garage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,7 +123,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Option.xaml">
+    <Page Include="Windows\AddOption.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,7 +192,9 @@
       <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Windows\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

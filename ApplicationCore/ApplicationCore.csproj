@@ -44,7 +44,6 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Interfaces\Repositories\IChassisRepository.cs" />
     <Compile Include="Interfaces\Services\IChassisService.cs" />
-    <Compile Include="Interfaces\ViewModels\IGarageViewModel.cs" />
     <Compile Include="Interfaces\Repositories\IEngineRepository.cs" />
     <Compile Include="Interfaces\Repositories\IOptionRepository.cs" />
     <Compile Include="Interfaces\Repositories\IVehicleRepository.cs" />
@@ -61,5 +60,6 @@
     <Compile Include="Services\OptionService.cs" />
     <Compile Include="Services\VehicleService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

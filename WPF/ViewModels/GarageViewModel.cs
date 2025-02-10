@@ -5,9 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
-using ApplicationCore.Interfaces.ViewModels;
-using ApplicationCore.Models;
 using WPF.Events;
+using WPF.ViewModels.Entities;
 using static ApplicationCore.Enums;
 
 namespace WPF.ViewModels
@@ -17,7 +16,7 @@ namespace WPF.ViewModels
         private readonly IVehicleService vehicleService;
         private readonly IChassisService chassisService;
         private readonly IOptionService optionService;
-        private Vehicle selectedVehicle;
+        private VehicleViewModel selectedVehicle;
 
         public GarageViewModel(IVehicleService vehicleService, IChassisService chassisService, IOptionService optionService)
         {
@@ -28,12 +27,12 @@ namespace WPF.ViewModels
             EngineTypes = Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToList();
 
             var vehicles = Task.Run(() => vehicleService.GetAll()).Result;
-            Vehicles = new ObservableCollection<Vehicle>(vehicles);
+            Vehicles = new ObservableCollection<VehicleViewModel>(vehicles.Select(v => new VehicleViewModel(v)));
         }
 
         public IList<EngineType> EngineTypes { get; set; }
-        public ObservableCollection<Vehicle> Vehicles { get; set; }
-        public Vehicle SelectedVehicle
+        public ObservableCollection<VehicleViewModel> Vehicles { get; set; }
+        public VehicleViewModel SelectedVehicle
         {
             get { return selectedVehicle; }
             set
@@ -48,18 +47,18 @@ namespace WPF.ViewModels
 
         private void UpdateVehicle()
         {
-            Task.Run(() => vehicleService.Update(selectedVehicle)).Wait();
+            Task.Run(() => vehicleService.Update(selectedVehicle.Model)).Wait();
         }
 
         private void ShowOptionWindow()
         {
-            var optionWindow = new Windows.Option(selectedVehicle, vehicleService, optionService);
-            optionWindow.ShowDialog();
+            var addOptionWindow = new Windows.AddOption(selectedVehicle, vehicleService, optionService);
+            addOptionWindow.ShowDialog();
         }
 
         private void ShowCreateVehicleWindow()
         {
-            var createVehicleWindow = new Windows.CreateVehicle(selectedVehicle, vehicleService, optionService, chassisService);
+            var createVehicleWindow = new Windows.CreateVehicle(vehicleService, optionService, chassisService);
             createVehicleWindow.ShowDialog();
         }
     }

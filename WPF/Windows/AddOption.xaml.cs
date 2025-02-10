@@ -4,13 +4,14 @@ using ApplicationCore.Interfaces.Services;
 using ApplicationCore.Models;
 using WPF.Shared.UserControls;
 using WPF.ViewModels;
+using WPF.ViewModels.Entities;
 
 namespace WPF.Windows
 {
     /// <summary>
     /// Logique d'interaction pour Option.xaml
     /// </summary>
-    public partial class Option : Window
+    public partial class AddOption : Window
     {
         public static readonly DependencyProperty ButtonCommandProperty =
             DependencyProperty.Register(
@@ -25,9 +26,9 @@ namespace WPF.Windows
             set { SetValue(ButtonCommandProperty, value); }
         }
 
-        public Option(Vehicle selectedVehicle, IVehicleService vehicleService, IOptionService optionService)
+        public AddOption(VehicleViewModel selectedVehicle, IVehicleService vehicleService, IOptionService optionService)
         {                        
-            DataContext = new OptionViewModel(selectedVehicle, optionService, this);
+            DataContext = new AddOptionViewModel(selectedVehicle, optionService, this);
 
             InitializeComponent();
         }
