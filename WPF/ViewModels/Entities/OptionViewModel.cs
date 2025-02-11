@@ -7,15 +7,24 @@ namespace WPF.ViewModels.Entities
         public OptionViewModel(Option option)
         {
             Model = option;
-            Id = option.Id;
-            Name = option.Name;
-            Price = option.Price;
         }
 
         public Option Model { get; private set; }
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        public int Id
+        {
+            get { return Model.Id; }
+            set { Model.Id = value; }
+        }
+        public string Name
+        {
+            get { return Model.Name; }
+            set { Model.Name = value; }
+        }
+        public decimal Price
+        {
+            get { return Model.Price; }
+            set { Model.Price = value; }
+        }
 
 
         public override string ToString()

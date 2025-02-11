@@ -24,15 +24,21 @@ namespace Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task Add(Vehicle vehicle)
+        {
+            dbContext.Vehicles.Add(vehicle);
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task Update(Vehicle vehicle)
         {
             dbContext.Entry(vehicle).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Add(Vehicle vehicle)
+        public async Task Delete(Vehicle vehicle)
         {
-            dbContext.Vehicles.Add(vehicle);
+            dbContext.Vehicles.Remove(vehicle);
             await dbContext.SaveChangesAsync();
         }
     }

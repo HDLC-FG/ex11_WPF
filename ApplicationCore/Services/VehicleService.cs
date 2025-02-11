@@ -20,14 +20,19 @@ namespace ApplicationCore.Services
             return await vehicleRepository.GetAll();
         }
 
+        public async Task Add(Vehicle vehicle)
+        {
+            await vehicleRepository.Add(vehicle);
+        }
+
         public async Task Update(Vehicle vehicle)
         {
             await vehicleRepository.Update(vehicle);
         }
 
-        public async Task Add(Vehicle vehicle)
+        public async Task Delete(Vehicle vehicle)
         {
-            await vehicleRepository.Add(vehicle);
+            await vehicleRepository.Delete(vehicle);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
+using WPF.Converters;
 using WPF.Events;
 using WPF.ViewModels.Entities;
 using WPF.Windows;
@@ -45,7 +46,18 @@ namespace WPF.ViewModels.Windows
         public ICommand UpdateVehicleCommand => new Command(execute => UpdateVehicle());
         public ICommand AddOptionsCommand => new Command(execute => ShowOptionWindow());
         public ICommand CreateVehicleCommand => new Command(execute => ShowCreateVehicleWindow());
+        public ICommand DeleteVehicleCommand => new Command(execute => DeleteVehicle(execute), canExecute => true);
 
+        private void DeleteVehicle(object selectedItems)
+        {
+            var vehicleViewModels = SelectedItemsConverter<VehicleViewModel>.ConvertToArray(selectedItems);
+
+            foreach (var vehicle in vehicleViewModels)
+            {
+                Vehicles.Remove(vehicle);
+                Task.Run(() => vehicleService.Delete(vehicle.Model)).Wait();
+            }            
+        }
         private void UpdateVehicle()
         {
             Task.Run(() => vehicleService.Update(selectedVehicle.Model)).Wait();

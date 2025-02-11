@@ -14,5 +14,6 @@ namespace WPF.ViewModels.Windows
         ICommand UpdateVehicleCommand { get; }
         ICommand AddOptionsCommand { get; }
         ICommand CreateVehicleCommand { get; }
+        ICommand DeleteVehicleCommand { get; }
     }
 }

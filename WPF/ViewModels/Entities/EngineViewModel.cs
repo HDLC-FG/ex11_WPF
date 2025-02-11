@@ -5,8 +5,6 @@ namespace WPF.ViewModels.Entities
 {
     public class EngineViewModel : NotifyPropertyChanged
     {
-        private int price;
-
         public EngineViewModel()
         {
             Model = new Engine();
@@ -15,25 +13,41 @@ namespace WPF.ViewModels.Entities
         public EngineViewModel(Engine engine)
         {
             Model = engine;
-            Id = engine.Id;
-            Horsepower = engine.Horsepower;
-            price = engine.Price;
-            Type = engine.Type;
         }
 
         public Engine Model { get; private set; }
-        public int Id { get; set; }
-        public int Horsepower { get; set; }
-        public int Price
+        public int Id
         {
-            get { return price; }
-            set
+            get { return Model.Id; }
+            set { Model.Id = value; }
+        }
+        public int Horsepower
+        {
+            get { return Model.Horsepower; }
+            set 
             {
-                price = value;
-                OnPropertyChanged(nameof(VehicleViewModel.TotalPrice));
+                Model.Horsepower = value;
+                OnPropertyChanged(nameof(Horsepower));
             }
         }
-        public EngineType Type { get; set; }
+        public int Price
+        {
+            get { return Model.Price; }
+            set
+            {
+                Model.Price = value;
+                OnPropertyChanged(nameof(Price));
+            }
+        }
+        public EngineType Type
+        {
+            get { return Model.Type; }
+            set 
+            {
+                Model.Type = value;
+                OnPropertyChanged(nameof(Type));
+            }
+        }
 
 
         public override string ToString()

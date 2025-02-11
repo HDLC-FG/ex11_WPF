@@ -51,8 +51,15 @@
                     <DataGridTextColumn Header="Cylindrée" Binding="{Binding Engine.Horsepower}" />
                     <DataGridTextColumn Header="Prix moteur" Binding="{Binding Engine.Price, StringFormat=C}" />
                     <DataGridTextColumn Header="Options" Binding="{Binding Options, Converter={StaticResource ListToStringConverter}}" Width="*" />
-                    <DataGridTextColumn Header="Prix Total" Binding="{Binding TotalPrice}" />
+                    <DataGridTextColumn Header="Prix Total" Binding="{Binding TotalPrice, StringFormat=C}" />
                 </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Supprimer" 
+                                  CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                  Command="{Binding DeleteVehicleCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
         </DockPanel>
     </Grid>

@@ -30,7 +30,11 @@ namespace WPF.ViewModels.Entities
         }
 
         public Vehicle Model { get; private set; }
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return Model.Id; }
+            set { Model.Id = value; }
+        }
         public ChassisViewModel Chassis { get; set; }
         public EngineViewModel Engine
         {
@@ -38,7 +42,7 @@ namespace WPF.ViewModels.Entities
             set
             {
                 engine = value;
-                if (engine != null) engine.PropertyChanged += Child_PropertyChanged;
+                if (engine != null) engine.PropertyChanged += Engine_PropertyChanged;
             }
         }
         public ObservableCollection<OptionViewModel> Options
@@ -54,7 +58,7 @@ namespace WPF.ViewModels.Entities
         {
             get
             {
-                return Chassis.Price + Engine.Price + Options.Sum(x => x.Price);
+                return Model.Chassis.Price + Model.Engine.Price + Model.Options.Sum(x => x.Price);
             }
         }
 
@@ -70,12 +74,13 @@ namespace WPF.ViewModels.Entities
             Options.Remove(option);
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void Child_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void Engine_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(e.PropertyName));
+            var engineViewModel = sender as EngineViewModel;
+            Model.Engine = engineViewModel.Model;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalPrice)));
         }
 
         private void Options_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

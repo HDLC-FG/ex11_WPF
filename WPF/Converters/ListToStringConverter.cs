@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
-using ApplicationCore.Models;
+using WPF.ViewModels.Entities;
 
 namespace WPF.Converters
 {
@@ -11,7 +11,7 @@ namespace WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IList<Option> options && options.Any())
+            if (value is IList<OptionViewModel> options && options.Any())
             {
                 return string.Join(" ; ", options.Select(option => option.ToString()));
             }
