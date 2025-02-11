@@ -55,6 +55,7 @@ namespace WPF.ViewModels.Windows
             foreach (var vehicle in vehicleViewModels)
             {
                 Vehicles.Remove(vehicle);
+                SelectedVehicle = Vehicles.FirstOrDefault();
                 Task.Run(() => vehicleService.Delete(vehicle.Model)).Wait();
             }            
         }
@@ -71,7 +72,7 @@ namespace WPF.ViewModels.Windows
 
         private void ShowCreateVehicleWindow()
         {
-            var createVehicleWindow = new CreateVehicle(vehicleService, optionService, chassisService);
+            var createVehicleWindow = new CreateVehicle(Vehicles, vehicleService, optionService, chassisService);
             createVehicleWindow.ShowDialog();
         }
     }

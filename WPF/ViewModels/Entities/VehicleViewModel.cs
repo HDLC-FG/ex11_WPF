@@ -58,7 +58,7 @@ namespace WPF.ViewModels.Entities
         {
             get
             {
-                return Model.Chassis.Price + Model.Engine.Price + Model.Options.Sum(x => x.Price);
+                return Model.Chassis.Price + (Model.Engine?.Price ?? 0) + Model.Options.Sum(x => x.Price);
             }
         }
 
@@ -75,6 +75,7 @@ namespace WPF.ViewModels.Entities
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
 
         private void Engine_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

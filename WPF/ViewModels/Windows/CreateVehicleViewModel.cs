@@ -14,14 +14,21 @@ namespace WPF.ViewModels.Windows
 {
     public class CreateVehicleViewModel : NotifyPropertyChanged
     {
+        private readonly IList<VehicleViewModel> garageVehicles;
         private readonly IVehicleService vehicleService;
         private readonly IOptionService optionService;
         private readonly CreateVehicle createVehicleWindow;
         private ChassisViewModel selectedChassis;
         private VehicleViewModel selectedVehicle;
 
-        public CreateVehicleViewModel(IVehicleService vehicleService, IOptionService optionService, IChassisService chassisService, CreateVehicle createVehicleWindow)
+        public CreateVehicleViewModel(
+            IList<VehicleViewModel> garageVehicles, 
+            IVehicleService vehicleService, 
+            IOptionService optionService, 
+            IChassisService chassisService, 
+            CreateVehicle createVehicleWindow)
         {
+            this.garageVehicles = garageVehicles;
             this.vehicleService = vehicleService;
             this.optionService = optionService;
             this.createVehicleWindow = createVehicleWindow;
@@ -59,7 +66,8 @@ namespace WPF.ViewModels.Windows
 
         private void CreateVehicle()
         {
-            Task.Run(() => vehicleService.Add(SelectedVehicle.Model)).Wait();
+            Task.Run(() => vehicleService.Add(selectedVehicle.Model)).Wait();
+            garageVehicles.Add(selectedVehicle);
             createVehicleWindow.Close();
         }
 

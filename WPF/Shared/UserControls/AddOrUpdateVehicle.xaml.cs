@@ -40,7 +40,7 @@ namespace WPF.Shared.UserControls
                 typeof(AddOrUpdateVehicle),
                 new PropertyMetadata(null));
 
-        public List<EngineType> EngineTypes
+        public IList<EngineType> EngineTypes
         {
             get { return (List<EngineType>)GetValue(EngineTypesContextProperty); }
             set { SetValue(EngineTypesContextProperty, value); }

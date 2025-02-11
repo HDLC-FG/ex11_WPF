@@ -32,7 +32,15 @@ namespace WPF
             serviceCollection.AddSingleton<ApplicationDbContext>((provider) =>
             {
                 var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GarageConnection"].ConnectionString);
-                connection.Open();
+                try
+                {
+                    connection.Open();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Database connection failed : " + ex.Message);
+                    throw;
+                }
                 return new ApplicationDbContext(connection, connectionDisposeWithContext: true);
             });
 
