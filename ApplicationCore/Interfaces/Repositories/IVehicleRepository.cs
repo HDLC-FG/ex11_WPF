@@ -10,5 +10,6 @@ namespace ApplicationCore.Interfaces.Repositories
         Task Add(Vehicle vehicle);
         Task Update(Vehicle vehicle);
         Task Delete(Vehicle vehicle);
+        Task<Vehicle> GetById(int id);
     }
 }

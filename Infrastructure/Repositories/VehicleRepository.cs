@@ -24,6 +24,11 @@ namespace Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<Vehicle> GetById(int id)
+        {
+            return await dbContext.Vehicles.FindAsync(id);
+        }
+
         public async Task Add(Vehicle vehicle)
         {
             dbContext.Vehicles.Add(vehicle);

@@ -9,6 +9,6 @@ namespace ApplicationCore.Interfaces.Services
         Task<IList<Vehicle>> GetAll();
         Task Add(Vehicle vehicle);
         Task Update(Vehicle vehicle);
-        Task Delete(Vehicle vehicle);
+        Task Delete(int id);
     }
 }

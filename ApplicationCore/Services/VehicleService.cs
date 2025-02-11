@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApplicationCore.Interfaces.Repositories;
 using ApplicationCore.Interfaces.Services;
@@ -30,9 +31,17 @@ namespace ApplicationCore.Services
             await vehicleRepository.Update(vehicle);
         }
 
-        public async Task Delete(Vehicle vehicle)
+        public async Task Delete(int id)
         {
-            await vehicleRepository.Delete(vehicle);
+            var vehicle = await vehicleRepository.GetById(id);
+            if (vehicle != null)
+            {
+                await vehicleRepository.Delete(vehicle);
+            }
+            else
+            {
+                throw new Exception("Vehicle does not exist");
+            }
         }
     }
 }

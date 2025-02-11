@@ -56,8 +56,8 @@ namespace WPF.ViewModels.Windows
             {
                 Vehicles.Remove(vehicle);
                 SelectedVehicle = Vehicles.FirstOrDefault();
-                Task.Run(() => vehicleService.Delete(vehicle.Model)).Wait();
-            }            
+                Task.Run(() => vehicleService.Delete(vehicle.Model.Id)).Wait();
+            }
         }
         private void UpdateVehicle()
         {
