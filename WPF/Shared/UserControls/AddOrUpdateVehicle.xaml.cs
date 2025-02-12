@@ -98,7 +98,7 @@ namespace WPF.Shared.UserControls
             set { SetValue(AddOptionsCommandProperty, value); }
         }
 
-        public ICommand DeleteOptionCommand => new Command(execute => DeleteOption(execute), canExecute => true);
+        public ICommand DeleteOptionCommand => new Command(execute => DeleteOption(execute), canExecute => Command.IsNotNullOrEmpty(canExecute));
 
         private void DeleteOption(object selectedItems)
         {

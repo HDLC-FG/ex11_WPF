@@ -17,7 +17,7 @@ namespace WPF.ViewModels.Windows
 
         public ObservableCollection<OptionViewModel> Options { get; set; }
         public ObservableCollection<OptionViewModel> SelectedOptions { get; set; }
-        public ICommand AddCommand => new Command(execute => AddOptions(execute), canExecute => true);
+        public ICommand AddCommand => new Command(execute => AddOptions(execute), canExecute => Command.IsNotNullOrEmpty(canExecute));
 
         public AddOptionViewModel(VehicleViewModel selectedVehicle, IOptionService optionService, AddOption window)
         {

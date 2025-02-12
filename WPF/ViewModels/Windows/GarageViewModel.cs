@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using ApplicationCore.Interfaces.Services;
 using WPF.Converters;
@@ -46,7 +47,7 @@ namespace WPF.ViewModels.Windows
         public ICommand UpdateVehicleCommand => new Command(execute => UpdateVehicle());
         public ICommand AddOptionsCommand => new Command(execute => ShowOptionWindow());
         public ICommand CreateVehicleCommand => new Command(execute => ShowCreateVehicleWindow());
-        public ICommand DeleteVehicleCommand => new Command(execute => DeleteVehicle(execute), canExecute => true);
+        public ICommand DeleteVehicleCommand => new Command(execute => DeleteVehicle(execute), canExecute => Command.IsNotNullOrEmpty(canExecute));
 
         private void DeleteVehicle(object selectedItems)
         {
@@ -62,6 +63,7 @@ namespace WPF.ViewModels.Windows
         private void UpdateVehicle()
         {
             Task.Run(() => vehicleService.Update(selectedVehicle.Model)).Wait();
+            MessageBox.Show("Véhicule enregistré !", "Appliquer", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ShowOptionWindow()

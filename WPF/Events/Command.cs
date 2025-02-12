@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Windows.Input;
 
 namespace WPF.Events
@@ -28,6 +29,11 @@ namespace WPF.Events
         public bool CanExecute(object parameter)
         {
             return canExecute == null || canExecute(parameter);
+        }
+
+        public static bool IsNotNullOrEmpty(object parameter)
+        {
+            return parameter != null && ((IList)parameter).Count > 0;
         }
     }
 }
