@@ -49,6 +49,12 @@ namespace WPF.ViewModels.Windows
         public ICommand CreateVehicleCommand => new Command(execute => ShowCreateVehicleWindow());
         public ICommand DeleteVehicleCommand => new Command(execute => DeleteVehicle(execute), canExecute => Command.IsNotNullOrEmpty(canExecute));
 
+        public void Dispose()
+        {
+            selectedVehicle.Dispose();
+            SelectedVehicle.Dispose();
+        }
+
         private void DeleteVehicle(object selectedItems)
         {
             var vehicleViewModels = SelectedItemsConverter<VehicleViewModel>.ConvertToArray(selectedItems);

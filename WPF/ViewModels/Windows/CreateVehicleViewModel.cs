@@ -12,7 +12,7 @@ using static ApplicationCore.Enums;
 
 namespace WPF.ViewModels.Windows
 {
-    public class CreateVehicleViewModel : NotifyPropertyChanged
+    public class CreateVehicleViewModel : NotifyPropertyChanged, IDisposable
     {
         private readonly IList<VehicleViewModel> garageVehicles;
         private readonly IVehicleService vehicleService;
@@ -63,6 +63,12 @@ namespace WPF.ViewModels.Windows
 
         public ICommand CreateVehicleCommand => new Command(execute => CreateVehicle());
         public ICommand AddOptionsCommand => new Command(execute => ShowOptionWindow());
+
+        public void Dispose()
+        {
+            selectedVehicle.Dispose();
+            SelectedVehicle.Dispose();
+        }
 
         private void CreateVehicle()
         {

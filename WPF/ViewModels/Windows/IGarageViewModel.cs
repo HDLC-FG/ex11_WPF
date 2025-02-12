@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ApplicationCore;
@@ -6,7 +7,7 @@ using WPF.ViewModels.Entities;
 
 namespace WPF.ViewModels.Windows
 {
-    public interface IGarageViewModel
+    public interface IGarageViewModel : IDisposable
     {
         IList<Enums.EngineType> EngineTypes { get; set; }
         ObservableCollection<VehicleViewModel> Vehicles { get; set; }

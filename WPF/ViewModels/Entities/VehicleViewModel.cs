@@ -1,11 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using ApplicationCore.Models;
 
 namespace WPF.ViewModels.Entities
 {
-    public class VehicleViewModel : INotifyPropertyChanged
+    public class VehicleViewModel : INotifyPropertyChanged, IDisposable
     {
         private EngineViewModel engine;
         private ObservableCollection<OptionViewModel> options;
@@ -45,6 +46,7 @@ namespace WPF.ViewModels.Entities
             get { return engine; }
             set
             {
+                if (engine != null) engine.PropertyChanged -= Engine_PropertyChanged;
                 engine = value;
                 if (engine != null) engine.PropertyChanged += Engine_PropertyChanged;
             }
@@ -54,6 +56,7 @@ namespace WPF.ViewModels.Entities
             get { return options; }
             set
             {
+                if (options != null) options.CollectionChanged -= Options_CollectionChanged;
                 options = value;
                 if (options != null) options.CollectionChanged += Options_CollectionChanged;
             }
@@ -77,6 +80,13 @@ namespace WPF.ViewModels.Entities
             Model.Options.Remove(option.Model);
             Options.Remove(option);
         }
+
+        public void Dispose()
+        {
+            Engine.PropertyChanged -= Engine_PropertyChanged;
+            Options.CollectionChanged -= Options_CollectionChanged;
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
