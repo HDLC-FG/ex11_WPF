@@ -12,13 +12,17 @@ namespace WPF.ViewModels.Entities
 
         public VehicleViewModel(ChassisViewModel selectedChassis)
         {
+            var engine = new EngineViewModel();
+            var options = new ObservableCollection<OptionViewModel>();
             Model = new Vehicle
             {
-                Chassis = selectedChassis.Model
+                Chassis = selectedChassis.Model,
+                Engine = engine.Model,
+                Options = new ObservableCollection<Option>(options.Select(option => option.Model))
             };
             Chassis = selectedChassis;
-            Engine = new EngineViewModel();
-            Options = new ObservableCollection<OptionViewModel>();
+            Engine = engine;
+            Options = options;
         }
 
         public VehicleViewModel(Vehicle model)
