@@ -4,13 +4,13 @@ using ApplicationCore.Models;
 using ApplicationCore.Services;
 using Moq;
 
-namespace ApplicationCoreTest.Services
+namespace ApplicationCoreTest.Services.VehicleServiceTest
 {
     [TestClass]
-    public sealed class T02_VehicleServiceTest_Add
+    public sealed class T03_VehicleServiceTest_Update
     {
         [TestMethod]
-        public void Add_Vehicle_ReturnOk()
+        public void Update_Vehicle_ReturnOk()
         {
             var vehicle = new Vehicle
             {
@@ -36,14 +36,14 @@ namespace ApplicationCoreTest.Services
                 }
             };
             var mockVehicleRepository = new Mock<IVehicleRepository>(MockBehavior.Strict);
-            mockVehicleRepository.Setup(x => x.Add(vehicle)).Returns(Task.CompletedTask);
+            mockVehicleRepository.Setup(x => x.Update(vehicle)).Returns(Task.CompletedTask);
             var repository = new VehicleService(mockVehicleRepository.Object);
-            
-            var task = repository.Add(vehicle).GetAwaiter();
+
+            var task = repository.Update(vehicle).GetAwaiter();
 
             Assert.IsNotNull(task);
             Assert.IsTrue(task.IsCompleted);
-            mockVehicleRepository.Verify(x => x.Add(vehicle), Times.Once);
+            mockVehicleRepository.Verify(x => x.Update(vehicle), Times.Once);
         }
     }
 }

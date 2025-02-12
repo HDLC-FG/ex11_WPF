@@ -4,7 +4,7 @@ using Effort;
 using Infrastructure;
 using Infrastructure.Repositories;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.VehicleRepositoryTest
 {
     [TestClass]
     public sealed class T02_VehicleRepositoryTest_Add
@@ -20,8 +20,8 @@ namespace InfrastructureTest.Repositories
                     {
                         Chassis = new Chassis
                         {
-                        Brand = "Renault",
-                        Name = "Megane",
+                            Brand = "Renault",
+                            Name = "Megane",
                             Price = 12000
                         },
                         Engine = new Engine

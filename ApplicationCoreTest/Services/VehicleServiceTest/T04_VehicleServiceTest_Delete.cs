@@ -3,7 +3,7 @@ using ApplicationCore.Models;
 using ApplicationCore.Services;
 using Moq;
 
-namespace ApplicationCoreTest.Services
+namespace ApplicationCoreTest.Services.VehicleServiceTest
 {
     [TestClass]
     public sealed class T04_VehicleServiceTest_Delete
@@ -14,7 +14,7 @@ namespace ApplicationCoreTest.Services
             var mockVehicleRepository = new Mock<IVehicleRepository>(MockBehavior.Strict);
             mockVehicleRepository.Setup(x => x.GetById(1)).ReturnsAsync((Vehicle?)null);
             var service = new VehicleService(mockVehicleRepository.Object);
-            
+
             var ex = Assert.ThrowsExceptionAsync<Exception>(() => service.Delete(1)).Result;
 
             Assert.IsNotNull(ex);

@@ -3,7 +3,7 @@ using Effort;
 using Infrastructure;
 using Infrastructure.Repositories;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.OptionRepositoryTest
 {
     [TestClass]
     public sealed class T02_OptionRepositoryTest_GetAvailables

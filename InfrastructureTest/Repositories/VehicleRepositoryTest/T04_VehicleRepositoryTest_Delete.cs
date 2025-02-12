@@ -4,7 +4,7 @@ using Infrastructure;
 using ApplicationCore.Models;
 using ApplicationCore;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.VehicleRepositoryTest
 {
     [TestClass]
     public sealed class T04_VehicleRepositoryTest_Delete

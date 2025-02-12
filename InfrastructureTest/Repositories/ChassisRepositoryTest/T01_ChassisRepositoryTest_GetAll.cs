@@ -3,7 +3,7 @@ using Infrastructure.Repositories;
 using Infrastructure;
 using ApplicationCore.Models;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.ChassisRepositoryTest
 {
     [TestClass]
     public sealed class T01_ChassisRepositoryTest_GetAll

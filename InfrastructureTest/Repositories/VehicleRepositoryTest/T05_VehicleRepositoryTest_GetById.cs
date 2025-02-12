@@ -4,7 +4,7 @@ using Effort;
 using Infrastructure;
 using Infrastructure.Repositories;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.VehicleRepositoryTest
 {
     [TestClass]
     public class T05_VehicleRepositoryTest_GetById

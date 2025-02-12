@@ -4,7 +4,7 @@ using Effort;
 using Infrastructure;
 using Infrastructure.Repositories;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.VehicleRepositoryTest
 {
     [TestClass]
     public sealed class T01_VehicleRepositoryTest_GetAll
@@ -40,7 +40,7 @@ namespace InfrastructureTest.Repositories
                             Brand = "Renault",
                             Name = "Megane",
                             Price = 12000
-                        },                        
+                        },
                         Engine = new Engine
                         {
                             Horsepower = 100,

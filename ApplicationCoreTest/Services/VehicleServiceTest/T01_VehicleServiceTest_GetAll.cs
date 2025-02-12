@@ -4,7 +4,7 @@ using ApplicationCore.Models;
 using ApplicationCore.Services;
 using Moq;
 
-namespace ApplicationCoreTest.Services
+namespace ApplicationCoreTest.Services.VehicleServiceTest
 {
     [TestClass]
     public sealed class T01_VehicleServiceTest_GetAll

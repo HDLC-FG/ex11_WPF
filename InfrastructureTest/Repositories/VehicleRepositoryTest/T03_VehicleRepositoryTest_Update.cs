@@ -6,7 +6,7 @@ using Effort;
 using Infrastructure;
 using Infrastructure.Repositories;
 
-namespace InfrastructureTest.Repositories
+namespace InfrastructureTest.Repositories.VehicleRepositoryTest
 {
     [TestClass]
     public sealed class T03_VehicleRepositoryTest_Update
