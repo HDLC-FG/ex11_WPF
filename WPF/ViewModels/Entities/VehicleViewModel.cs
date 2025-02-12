@@ -79,13 +79,12 @@ namespace WPF.ViewModels.Entities
 
         private void Engine_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var engineViewModel = sender as EngineViewModel;
-            Model.Engine = engineViewModel.Model;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalPrice)));
         }
 
         private void Options_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Options)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalPrice)));
         }
     }
