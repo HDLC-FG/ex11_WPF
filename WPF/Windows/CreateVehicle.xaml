@@ -9,7 +9,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:CreateVehicleViewModel}"
         mc:Ignorable="d"
         Language="fr-FR"
-        Title="Ajouter un véhicule" Height="500" Width="300" MinWidth="300">
+        Title="Ajouter un véhicule" Height="520" Width="300" MinWidth="300">
     
     <Grid Margin="5, 0, 5, 0">
         <ScrollViewer>

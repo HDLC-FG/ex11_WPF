@@ -17,6 +17,8 @@ namespace Infrastructure.Repositories
         
         public async Task<IList<Option>> GetAvailables(IList<Option> optionsNotAvailable)
         {
+            if(optionsNotAvailable == null || optionsNotAvailable.Count == 0) return await dbContext.Options.ToListAsync();
+
             var idsToExclude = optionsNotAvailable.Select(x => x.Id).ToList();
             return await dbContext.Options.Where(o => !idsToExclude.Contains(o.Id)).ToListAsync();
         }

@@ -79,7 +79,7 @@ namespace WPF.ViewModels.Windows
 
         private void ShowOptionWindow()
         {
-            var optionWindow = new AddOption(SelectedVehicle, vehicleService, optionService);
+            var optionWindow = new AddOption(SelectedVehicle, optionService);
             optionWindow.ShowDialog();
         }
     }

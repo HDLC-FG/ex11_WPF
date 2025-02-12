@@ -18,8 +18,6 @@ namespace WPF
     /// </summary>
     public partial class App : Application
     {
-        public static IServiceProvider ServiceProvider { get; private set; }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -53,7 +51,7 @@ namespace WPF
             serviceCollection.AddScoped<IChassisRepository, ChassisRepository>();
             serviceCollection.AddScoped<IOptionRepository, OptionRepository>();
 
-            ServiceProvider = serviceCollection.BuildServiceProvider();
+            var ServiceProvider = serviceCollection.BuildServiceProvider();
 
             var garageWindow = ServiceProvider.GetRequiredService<GarageWindow>();
             garageWindow.Show();

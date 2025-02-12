@@ -25,7 +25,7 @@ namespace WPF.Windows
             set { SetValue(ButtonCommandProperty, value); }
         }
 
-        public AddOption(VehicleViewModel selectedVehicle, IVehicleService vehicleService, IOptionService optionService)
+        public AddOption(VehicleViewModel selectedVehicle, IOptionService optionService)
         {                        
             DataContext = new AddOptionViewModel(selectedVehicle, optionService, this);
 

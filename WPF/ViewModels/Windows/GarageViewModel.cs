@@ -66,6 +66,7 @@ namespace WPF.ViewModels.Windows
                 Task.Run(() => vehicleService.Delete(vehicle.Model.Id)).Wait();
             }
         }
+
         private void UpdateVehicle()
         {
             Task.Run(() => vehicleService.Update(selectedVehicle.Model)).Wait();
@@ -74,7 +75,7 @@ namespace WPF.ViewModels.Windows
 
         private void ShowOptionWindow()
         {
-            var addOptionWindow = new AddOption(selectedVehicle, vehicleService, optionService);
+            var addOptionWindow = new AddOption(selectedVehicle, optionService);
             addOptionWindow.ShowDialog();
         }
 

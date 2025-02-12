@@ -85,7 +85,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\SelectedItemsConverter.cs" />
-    <Compile Include="Converters\EnumToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Shared\UserControls\AddOrUpdateVehicle.xaml.cs">
       <DependentUpon>AddOrUpdateVehicle.xaml</DependentUpon>
